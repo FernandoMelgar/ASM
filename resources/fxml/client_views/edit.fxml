@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="740.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.cmr.dashboard.controllers.EditClientsController">
+   <children>
+      <GridPane fx:id="editClientForm" style="-fx-background-color: #fff;">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="35.0" minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="35.0" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="6.0" minHeight="2.0" prefHeight="3.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label text="Nombre: " GridPane.rowIndex="2">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="editNameInput" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="27.0" GridPane.rowIndex="3" />
+            <Label text="Email:" GridPane.rowIndex="4">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="editEmailInput" GridPane.rowIndex="5" />
+            <Label text="Apellidos:" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="editSurnameInput" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <Label text="Celular:" GridPane.columnIndex="2" GridPane.rowIndex="4">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="editPhoneInput" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+            <Label text="Dirección:" GridPane.rowIndex="6" />
+            <TextField fx:id="editAddressInput" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="27.0" GridPane.rowIndex="7" />
+            <Label text="Editar Cliente" GridPane.rowIndex="1">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </Label>
+            <Label text="Añadir Automóvil" GridPane.rowIndex="8">
+               <font>
+                  <Font size="24.0" />
+               </font>
+               <padding>
+                  <Insets bottom="10.0" top="15.0" />
+               </padding>
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin>
+            </Label>
+            <Label text="Marca:" GridPane.rowIndex="9">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="editCarLicencePlateInput" GridPane.rowIndex="13" />
+            <Label text="Modelo:" GridPane.columnIndex="2" GridPane.rowIndex="9">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="editCarSerialNumberInput" GridPane.columnIndex="2" GridPane.rowIndex="13" />
+            <TextField fx:id="editCarBrandInput" GridPane.rowIndex="11" />
+            <TextField fx:id="editCarModelInput" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+            <Label text="Placas:" GridPane.rowIndex="12">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </Label>
+            <Label text="Número de Serie:" GridPane.columnIndex="2" GridPane.rowIndex="12">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </Label>
+            <Label text="Año:" GridPane.rowIndex="14">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="editCarKmInput" cacheShape="false" centerShape="false" focusTraversable="false" mouseTransparent="true" GridPane.rowIndex="15" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="16">
+               <children>
+                  <Button mnemonicParsing="false" text="Cancelar" />
+                  <Button mnemonicParsing="false" style="-fx-background-color: #302c44;" text="Salvar" textFill="WHITE">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <TextField fx:id="editCarKmInput1" GridPane.columnIndex="2" GridPane.rowIndex="15" />
+            <Label text="Kilometraje:" GridPane.columnIndex="2" GridPane.rowIndex="14">
+               <padding>
+                  <Insets top="5.0" />
+               </padding>
+            </Label>
+         </children>
+      </GridPane>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>

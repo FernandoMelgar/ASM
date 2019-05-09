@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane fx:id="mainPane" prefHeight="730.0" prefWidth="1023.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.asm.view.controller.HomeController">
+   <left>
+      <VBox prefHeight="730.0" prefWidth="240.0" style="-fx-background-color: #302C44;" stylesheets="@../css/home.css" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="120.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/company-logo.png" />
+               </image>
+               <VBox.margin>
+                  <Insets left="30.0" top="20.0" />
+               </VBox.margin>
+            </ImageView>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#btnDashboardOnClick" prefWidth="240.0" style="-fx-background-color: #302C44;" styleClass="btn" stylesheets="@../css/home.css" text="Dashboard" textFill="#f4f6f9">
+               <padding>
+                  <Insets bottom="12.0" left="40.0" top="12.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="60.0" />
+               </VBox.margin>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#btnServicesOnClick" prefWidth="240.0" style="-fx-background-color: #302C44;" stylesheets="@../css/home.css" text="Servicios" textFill="#f4f6f9">
+               <padding>
+                  <Insets bottom="12.0" left="40.0" top="12.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="clientsButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#onBtnClientsClicked" prefWidth="240.0" style="-fx-background-color: #302C44;" stylesheets="@../css/home.css" text="Clientes" textFill="#f4f6f9">
+               <padding>
+                  <Insets bottom="12.0" left="40.0" top="12.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#btnEmployeesOnClick" prefWidth="240.0" style="-fx-background-color: #302C44;" stylesheets="@../css/home.css" text="Empleados" textFill="#f4f6f9">
+               <padding>
+                  <Insets bottom="12.0" left="40.0" top="12.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </Button>
+            <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#btnConfigOnClick" prefWidth="240.0" style="-fx-background-color: #302C44;" stylesheets="@../css/home.css" text="Configuración" textFill="#f4f6f9">
+               <padding>
+                  <Insets bottom="12.0" left="40.0" top="12.0" />
+               </padding>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <ScrollPane fx:id="mainScrollPane" fitToHeight="true" fitToWidth="true" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
