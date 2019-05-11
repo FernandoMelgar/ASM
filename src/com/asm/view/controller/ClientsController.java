@@ -30,27 +30,12 @@ public class ClientsController implements Initializable {
 
     private ObservableList<ClientProperty> clientData = FXCollections.observableArrayList();
     private String baseURL = "http://localhost:8080";
+    private ScrollPane mainScrollPane;
 
     // Anchor pane for forms
     @FXML private AnchorPane mainAnchorPane;
 
-    // New Client form inputs
-    @FXML private TextField nameInput;
-    @FXML private TextField surnameInput;
-    @FXML private TextField emailInput;
-    @FXML private TextField phoneInput;
-    @FXML private TextField addressInput;
-
-    // New Car form inputs
-    @FXML private TextField carBrandInput;
-    @FXML private TextField carModelInput;
-    @FXML private TextField carLicencePlateInput;
-    @FXML private TextField carSerialNumberInput;
-    @FXML private TextField carKmInput;
-
-
     // Clients table items
-    @FXML private GridPane clientForm;
     @FXML private TableView<ClientProperty> clientsTable;
     @FXML private TableColumn<ClientProperty, String> columnID;
     @FXML private TableColumn<ClientProperty, String> columnName;
@@ -67,7 +52,7 @@ public class ClientsController implements Initializable {
     @FXML private Label clientNameDetail;
     @FXML private Label clientEmailDetail;
     @FXML private Label clientPhoneDetail;
-    private ScrollPane mainScrollPane;
+
 
 
     public ClientsController() {
@@ -102,7 +87,6 @@ public class ClientsController implements Initializable {
         columnEmail.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
         columnPhone.setCellValueFactory(cellData -> cellData.getValue().phoneNumberProperty().asObject());
         columnCars.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getCarElementsToString()));
-        showNewClientForm(false);
         showUserDetails(null);
         clientsTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) ->
@@ -177,25 +161,6 @@ public class ClientsController implements Initializable {
         clientDetailsPane.setManaged(visible);
     }
 
-    private void showNewClientForm(boolean b) {
-        clearClientForm();
-        clientForm.setVisible(b);
-        clientForm.setManaged(b);
-    }
-
-    private void clearClientForm() {
-        nameInput.clear();
-        surnameInput.clear();
-        emailInput.clear();
-        phoneInput.clear();
-        addressInput.clear();
-        carBrandInput.clear();
-        carModelInput.clear();
-        carLicencePlateInput.clear();
-        carSerialNumberInput.clear();
-        carKmInput.clear();
-    }
-
     public void showUserDetails(ClientProperty client) {
         if (client != null) {
             showClientDetailsPane(true);
@@ -222,37 +187,6 @@ public class ClientsController implements Initializable {
     }
 
 
-    public void addNewClientOnClick(MouseEvent mouseEvent) {
-        String name = nameInput.getText();
-        String surname = surnameInput.getText();
-        String email = emailInput.getText();
-        long phone = Long.parseLong(phoneInput.getText());
-        String address = addressInput.getText();
-        try {
-            saveClient();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Hubo un problema al comunicarse con el servidor");
-        }
-        String brand = carModelInput.getText();
-        String model = carModelInput.getText();
-        String licencePlate = carLicencePlateInput.getText();
-        //Automobile clientCar = new Automobile(brand, model, licencePlate);
-        //clientData.add(new Client(10, name, surname, email, phone, clientCar));
-        showNewClientForm(false);
-        System.out.println("Cliente añadido!");
-    }
-
-    public void cancelNewClientOnClick(MouseEvent mouseEvent) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Cancelar Registro de Cliente");
-        alert.setHeaderText("¿Estás seguro que deseas cancelar el registro del cliente?");
-        alert.setContentText("Todos los cambios se borraran");
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            showNewClientForm(false);
-        }
-    }
 
     public void closeClientDetails(MouseEvent mouseEvent) {
         showClientDetailsPane(false);
@@ -269,7 +203,6 @@ public class ClientsController implements Initializable {
     }
 
     public void newClientWindowVisible() throws IOException {
-
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/client_views/new.fxml"));
         Parent root = loader.load();
         NewClientController newClientController= loader.getController();

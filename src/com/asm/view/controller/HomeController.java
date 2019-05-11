@@ -29,6 +29,11 @@ public class HomeController {
                 ClientsController clientsController = loader.getController();
                 clientsController.init(mainScrollPane);
             }
+            if (ui.equals("employees")) {
+                System.out.println("You selected employess");
+                EmployeesController employeesController = loader.getController();
+                employeesController.init(mainScrollPane);
+            }
             mainScrollPane.setContent(root);
             mainScrollPane.setFitToWidth(true);
 
