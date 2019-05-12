@@ -181,13 +181,18 @@ public class NewClientController {
         client.setEmail(this.newEmailInput.getText());
         client.setAddress(this.newAddressInput.getText());
 
-        this.clientPersistence.save(client);
+        try {
+            this.clientPersistence.save(client);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
     public void init(ScrollPane mainScrollPane) {
         this.mainScrollPane = mainScrollPane;
         this.clientPersistence = new ClientNodePersistence();
+
     }
 
 }

@@ -1,17 +1,43 @@
 package com.asm.view.controller;
 
+import com.asm.entities.worker.Employee;
+import com.asm.entities.worker.SalaryInfo;
+import com.asm.entities.worker.salaries.SalaryIteration;
+import com.asm.entities.worker.salaries.SalaryType;
+import com.asm.persistance.node.client.EmployeeNodePersistence;
+import com.asm.view.controller.persistence.EmployeePersistence;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.util.Optional;
 
 public class NewEmployeeController {
+
+    public ChoiceBox genreEmpl;
+    public TextField surnamesEmpl;
+    public TextField nameEmployee;
+    public TextField rfcEmpl;
+    public DatePicker birthDateEmpl;
+    public TextField phoneEmpl;
+    public TextField emailEmpl;
+    public TextField streetEmpl;
+    public TextField cityEmpl;
+    public TextField ccpEmpl;
+    public TextField stateEmpl;
+    public TextField specialitiesEmpl;
+    public TextField positionEmpl;
+    public TextField nssEmpl;
+    public TextField salaryEmpl;
     private ScrollPane mainScrollPane;
+    private EmployeePersistence persistence;
+
+    public NewEmployeeController() {
+        this.persistence = new EmployeeNodePersistence();
+    }
 
     private void goToHomeView() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/employees.fxml"));
@@ -40,5 +66,20 @@ public class NewEmployeeController {
         if (result.get() == ButtonType.OK){
             goToHomeView();
         }
+    }
+
+    public void saveEmployee(ActionEvent actionEvent) {
+        Employee e = new Employee();
+        e.setPaysheet(new SalaryInfo(this.salaryEmpl.getText(), SalaryType.NOTSET, SalaryIteration.NOTSET));
+        e.setName(this.nameEmployee.getText());
+        e.setSurnames(this.surnamesEmpl.getText());
+        e.setRfc(this.rfcEmpl.getText());
+        e.setEmail(this.emailEmpl.getText());
+        e.setPosition(this.positionEmpl.getText());
+        e.setSpecialities(this.specialitiesEmpl.getText());
+        e.setNss(this.nssEmpl.getText());
+//        e.setPhone(this.phoneEmpl.getText());
+
+        this.persistence.save(e);
     }
 }

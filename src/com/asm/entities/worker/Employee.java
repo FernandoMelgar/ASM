@@ -1,91 +1,53 @@
 package com.asm.entities.worker;
 
 
-import com.asm.entities.worker.salaries.DefaultSalary;
+import com.asm.entities.worker.salaries.SalaryIteration;
+import com.asm.entities.worker.salaries.SalaryType;
 import com.asm.entities.worker.skills.Skill;
 import com.asm.entities.worker.workhistory.WorkHistory;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class Employee {
 
-    private long id;
-    private String nss;
+    private String id;
 
     private String name;
-    private String lastName;
-    private String surname;
-
+    private String surnames;
+    private Date birthDate;
+    private Genre gnere;
+    private String rfc;
+    private String email;
+    private String phone;
+    private String adress;
     private String position;
-    Salary salaryInfo;
-
-    private List<Skill> skills;
-
+    private String specialities;
     private List<WorkHistory> workHistory;
-    private double punctuation;
+    private SalaryInfo paysheet;
+    private String nss;
 
     public Employee() {
-        this.nss = "";
+        this.id = "";
         this.name = "";
-        this.lastName = "";
-        this.surname = "";
+        this.surnames = "";
+        this.gnere = Genre.NONE;
+        this.rfc = "";
+        this.email = "";
+        this.phone = "";
+        this.adress = "";
         this.position = "";
-        this.skills = new ArrayList<>();
         this.workHistory = new ArrayList<>();
-        this.punctuation = 0.0;
-        this.salaryInfo = new DefaultSalary();
+        this.paysheet = new SalaryInfo("0", SalaryType.NOTSET, SalaryIteration.NOTSET);
     }
 
-    public String getFullName() {
-        if (this.name.equals("") && this.lastName.equals("")) return "No name Found";
-        return String.format("%s %s %s",this.name, this.lastName, this.surname);
-    }
-
-    public void setFullNameInformation(String name, String lastName, String motherLastName){
-        this.name = name;
-        this.lastName = lastName;
-        this.surname = motherLastName;
-    }
-
-    public void setFullNameInformation(String fullName){
-        String[] ss = fullName.split(" ");
-        this.name = ss[0];
-        this.lastName = ss[1];
-        this.surname = ss[2];
-    }
-
-    public void addSkill(Skill labourSkill) {
-        this.skills.add(labourSkill);
-    }
-
-    public void removeSkill(String name){
-        int i;
-        for (i = 0; i < skills.size(); i ++){
-            if (skills.get(i).getName().equals(name)) break;
-        }
-        skills.remove(i);
-    }
-
-    public void addToHistory(WorkHistory wk) {
-        this.workHistory.add(wk);
-    }
-
-    public long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(String id) {
         this.id = id;
-    }
-
-    public String getNss() {
-        return nss;
-    }
-
-    public void setNss(String nss) {
-        this.nss = nss;
     }
 
     public String getName() {
@@ -96,20 +58,60 @@ public class Employee {
         this.name = name;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getSurnames() {
+        return surnames;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setSurnames(String surnames) {
+        this.surnames = surnames;
     }
 
-    public String getSurname() {
-        return surname;
+    public Date getBirthDate() {
+        return birthDate;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setBirthDate(Date birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public Genre getGnere() {
+        return gnere;
+    }
+
+    public void setGnere(Genre gnere) {
+        this.gnere = gnere;
+    }
+
+    public String getRfc() {
+        return rfc;
+    }
+
+    public void setRfc(String rfc) {
+        this.rfc = rfc;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getAdress() {
+        return adress;
+    }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 
     public String getPosition() {
@@ -120,20 +122,20 @@ public class Employee {
         this.position = position;
     }
 
-    public Salary getSalaryInfo() {
-        return salaryInfo;
+    public String getSpecialities() {
+        return specialities;
     }
 
-    public void setSalaryInfo(Salary salaryInfo) {
-        this.salaryInfo = salaryInfo;
+    public void setSpecialities(String specialities) {
+        this.specialities = specialities;
     }
 
-    public List<Skill> getSkills() {
-        return skills;
+    public String getNss() {
+        return nss;
     }
 
-    public void setSkills(List<Skill> skills) {
-        this.skills = skills;
+    public void setNss(String nss) {
+        this.nss = nss;
     }
 
     public List<WorkHistory> getWorkHistory() {
@@ -144,12 +146,11 @@ public class Employee {
         this.workHistory = workHistory;
     }
 
-    public double getPunctuation(){
-        DecimalFormat df = new DecimalFormat("#.#");
-        return Double.parseDouble(df.format(this.punctuation));
+    public SalaryInfo getPaysheet() {
+        return paysheet;
     }
 
-    public void setPunctuation(double punctuation) {
-        this.punctuation = punctuation;
+    public void setPaysheet(SalaryInfo paysheet) {
+        this.paysheet = paysheet;
     }
 }

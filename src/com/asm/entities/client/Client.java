@@ -30,8 +30,8 @@ public class Client {
 //        this.id = "";
         this.name = name;
         this.email = email;
-        this.surnames = "";
-        this.phone = "";
+        this.surnames = "Defaul";
+        this.phone = "4565";
         this.address = "";
         this.cars = new ArrayList<>();
     }
@@ -39,10 +39,10 @@ public class Client {
     public Client(String name, String lastname) {
 //        this.id = "";
         this.name = name;
-        this.email = "";
-        this.surnames = "";
-        this.phone = "";
-        this.address = "";
+        this.email = "defaul@gmail.com";
+        this.surnames = "Default";
+        this.phone = "1234";
+        this.address = "Defualt defualt fault";
         this.cars = new ArrayList<>();
     }
 

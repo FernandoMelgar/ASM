@@ -1,6 +1,8 @@
 package com.asm.view.controller;
 
 
+import com.asm.entities.client.Client;
+import com.asm.interactors.ClientInteractor;
 import com.asm.view.controller.properties.AutomobileProperty;
 import com.asm.view.controller.properties.ClientProperty;
 import javafx.beans.property.ReadOnlyStringWrapper;
@@ -23,12 +25,15 @@ import javafx.scene.input.MouseEvent;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ClientsController implements Initializable {
 
-    private ObservableList<ClientProperty> clientData = FXCollections.observableArrayList();
+    private ObservableList<ClientProperty> clientData;
+    private ClientInteractor interactor;
     private String baseURL = "http://localhost:8080";
     private ScrollPane mainScrollPane;
 
@@ -56,15 +61,12 @@ public class ClientsController implements Initializable {
 
 
     public ClientsController() {
-        clientData.add(new ClientProperty("Hans", "Muster de la Paz", "hans@gmail.com"));
-        clientData.add(new ClientProperty("Ruth", "Mueller Rasjdnasjns", 5540029494L));
-        clientData.add(new ClientProperty("Heinz", "Kurz"));
-        clientData.add(new ClientProperty("Cornelia", "Meier"));
-        clientData.add(new ClientProperty("Werner", "Meyer"));
-        clientData.add(new ClientProperty("Lydia", "Kunz"));
-        clientData.add(new ClientProperty("Anna", "Best"));
-        clientData.add(new ClientProperty("Stefan", "Meier"));
-        clientData.add(new ClientProperty("Martin", "Mueller"));
+        this.interactor = new ClientInteractor();
+        try {
+            this.clientData = FXCollections.observableArrayList(interactor.getAllClientsAsProperty());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public ObservableList<ClientProperty> getClientData() {

@@ -7,9 +7,9 @@ import java.util.List;
 
 
 public class ClientProperty {
-    private final StringProperty ID;
-    private final StringProperty firstName;
-    private final StringProperty lastName;
+    private StringProperty ID;
+    private StringProperty firstName;
+    private StringProperty lastName;
     private StringProperty email;
     private LongProperty phoneNumber;
     private StringProperty address;
@@ -62,12 +62,19 @@ public class ClientProperty {
         this.car.add(c);
     }
 
-    public ClientProperty(String ID, String firstName, String lastName, String email, long phoneNumber, AutomobileProperty car) {
+    public ClientProperty(String ID, String firstName, String lastName, String email, long phoneNumber) {
         this.ID = new SimpleStringProperty(ID);
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.email = new SimpleStringProperty(email);
         this.phoneNumber = new SimpleLongProperty(phoneNumber);
+        this.car = new ArrayList<>();
+        AutomobileProperty c = new  AutomobileProperty("Audi", "Q5");
+        this.car.add(c);
+    }
+
+    public ClientProperty(){
+
         this.car = new ArrayList<>();
         AutomobileProperty c = new  AutomobileProperty("Audi", "Q5");
         this.car.add(c);
