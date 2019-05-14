@@ -20,6 +20,7 @@ public class ClientNodePersistence  implements ClientPersistence {
     public void save(Client c) throws IOException {
         String json = mapper.writeValueAsString(c);
         String response = NodePersistence.sendPostRequest(json, "http://localhost:8080/clients/new");
+        System.out.println(json);
     }
 
     @Override
@@ -51,10 +52,10 @@ public class ClientNodePersistence  implements ClientPersistence {
             Client client = new Client();
             client.setId(clientJson.get("_id").toString());
             client.setName(clientJson.get("name").toString());
-            client.setSurnames(clientJson.get("surenames").toString());
+            client.setSurnames(clientJson.get("surnames").toString());
             client.setPhone(clientJson.get("phone").toString());
             client.setEmail(clientJson.get("email").toString());
-            client.setAddress(clientJson.get("adress").toString());
+            client.setAddress(clientJson.get("address").toString());
             client.setCars(carsList);
             clientsList.add(client);
         }
