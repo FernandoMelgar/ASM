@@ -46,12 +46,12 @@ public class ClientNodePersistenceTest {
             }
 
             Client client = new Client();
-            client.setId(clientJson.get("_id").toString());
-            client.setName(clientJson.get("name").toString());
-            client.setSurnames(clientJson.get("surenames").toString());
-            client.setPhone(clientJson.get("phone").toString());
-            client.setEmail(clientJson.get("email").toString());
-            client.setAddress(clientJson.get("adress").toString());
+            client.setId(clientJson.get("_id").textValue());
+            client.setName(clientJson.get("name").textValue());
+            client.setSurnames(clientJson.get("surenames").textValue());
+            client.setPhone(clientJson.get("phone").textValue());
+            client.setEmail(clientJson.get("email").textValue());
+            client.setAddress(clientJson.get("adress").textValue());
             client.setCars(carsList);
             System.out.println(client.toString());
         }

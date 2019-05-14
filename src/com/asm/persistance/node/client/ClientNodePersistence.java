@@ -50,12 +50,12 @@ public class ClientNodePersistence  implements ClientPersistence {
             }
 
             Client client = new Client();
-            client.setId(clientJson.get("_id").toString());
-            client.setName(clientJson.get("name").toString());
-            client.setSurnames(clientJson.get("surnames").toString());
-            client.setPhone(clientJson.get("phone").toString());
-            client.setEmail(clientJson.get("email").toString());
-            client.setAddress(clientJson.get("address").toString());
+            client.setId(clientJson.get("_id").textValue());
+            client.setName(clientJson.get("name").textValue());
+            client.setSurnames(clientJson.get("surnames").textValue());
+            client.setPhone(clientJson.get("phone").textValue());
+            client.setEmail(clientJson.get("email").textValue());
+            client.setAddress(clientJson.get("address").textValue());
             client.setCars(carsList);
             clientsList.add(client);
         }
