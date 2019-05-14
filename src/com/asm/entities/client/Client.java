@@ -14,7 +14,7 @@ public class Client {
     private String phone;
     private String email;
     private String address;
-    private List<Vehicle> cars;
+    private List<String> cars;
 
     public Client() {
 //        this.id = "";
@@ -44,6 +44,19 @@ public class Client {
         this.phone = "1234";
         this.address = "Defualt defualt fault";
         this.cars = new ArrayList<>();
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", surnames='" + surnames + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", cars=" + cars +
+                '}';
     }
 
     public String getId() {
@@ -87,23 +100,22 @@ public class Client {
         this.address = address;
     }
 
-    public List<Vehicle> getCars() {
+    public List<String> getCars() {
         return cars;
     }
 
-    public void setCars(List<Vehicle> cars) {
+    public void setCars(List<String> cars) {
         this.cars = cars;
-    }
-
-    public void addVehicle(Vehicle v1) {
-        this.cars.add(v1);
     }
 
     public String getEmail() {
         return email;
     }
 
+
     public void setEmail(String email) {
         this.email = email;
     }
+
+
 }
