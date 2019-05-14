@@ -21,7 +21,7 @@ public class ClientNodePersistenceTest {
 
 
     private String response2 = "{[{\"cars\":[],\"id\":\"5cd1c3577b010306d824e5a8\",\"name\":\"Andrea\",\"surenames\":\"Mtz Rdz\",\"email\":\"andy6@gmail.com\",\"phone\":\"5540029494\",\"adress\":\"Salt Lake City, Utah\"},{\"cars\":[],\"id\":\"5cd2da333c9505030a8c1d39\",\"name\":\"Andrea\",\"surenames\":\"Mtz Rdz\",\"email\":\"andy@gmail.com\",\"phone\":\"5540029494\",\"adress\":\"Salt Lake City, Utah\",},{\"cars\":[\"5cd3813a2d16450b48fb3979\",\"5cd381792d16450b48fb397b\",\"5cd389f398e16f0bd6058c31\"],\"id\":\"5cd2e9f6b7576003b9daf18e\",\"name\":\"Andrea\",\"surenames\":\"Mtz Rdz\",\"email\":\"andy95@gmail.com\",\"phone\":\"5540029494\",\"adress\":\"Salt Lake City, Utah},{\"cars\":[\"5cd38e34b778ec0c24a09adf\",\"5cd38e6bd9dfde0c32d278ae\"],\"_id\":\"5cd38acf98e16f0bd6058c32\",\"name\":\"Carlos\",\"surenames\":\"Martínez Rodríguez\",\"email\":\"cmtz@gmail.com\",\"phone\":\"5540029494\",\"adress\":\"México City\"}]}";
-    private String clientJson = "{\"cars\":[],\"id\":\"5cd1c3577b010306d824e5a8\",\"name\":\"Andrea\",\"surenames\":\"Mtz Rdz\",\"email\":\"andy6@gmail.com\",\"phone\":\"5540029494\",\"adress\":\"Salt Lake City, Utah\"}";
+    private String clientJson = "{\"cars\":[],\"id\":\"5cd1c3577b010306d824e5a8\",\"name\":\"Andrea\",\"surnames\":\"Mtz Rdz\",\"email\":\"andy6@gmail.com\",\"phone\":\"5540029494\",\"adress\":\"Salt Lake City, Utah\"}";
 
 
 

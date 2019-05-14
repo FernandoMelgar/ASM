@@ -5,7 +5,7 @@ import com.asm.entities.worker.SalaryInfo;
 import com.asm.entities.worker.salaries.SalaryIteration;
 import com.asm.entities.worker.salaries.SalaryType;
 import com.asm.persistance.node.client.EmployeeNodePersistence;
-import com.asm.view.controller.persistence.EmployeePersistence;
+import com.asm.interactors.EmployeePersistence;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

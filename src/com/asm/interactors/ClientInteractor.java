@@ -27,7 +27,13 @@ public class ClientInteractor {
 
     }
 
-
+    public void deleteClient(String id){
+        try {
+            persistence.delete(id);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     public void saveClient(Client c) {
         try {
