@@ -36,12 +36,15 @@ public class ClientNodePersistenceTest {
 
         for (int i = 0; i < clientsNode.size(); i++) {
             JsonNode clientJson = clientsNode.get(i);
-//            System.out.println(clientJson.get("name").toString());
-//            System.out.println(clientJson.get("surenames").toString());
-//            System.out.println(clientJson.get("phone").toString());
-//            System.out.println(clientJson.get("email").toString());
-//            System.out.println(clientJson.get("adress").toString());
-//            System.out.println("");
+            JsonNode clientCars = clientJson.get("cars");
+            List<String> carsList = new ArrayList<>();
+
+            if (clientCars.size() != 0) {
+                for (final JsonNode carNode : clientCars) {
+                    System.out.println(carNode);
+                    carsList.add(carNode.toString());
+                }
+            }
 
             Client client = new Client();
             client.setId(clientJson.get("_id").toString());
@@ -50,15 +53,10 @@ public class ClientNodePersistenceTest {
             client.setPhone(clientJson.get("phone").toString());
             client.setEmail(clientJson.get("email").toString());
             client.setAddress(clientJson.get("adress").toString());
+            client.setCars(carsList);
             System.out.println(client.toString());
         }
-
-        Vehicle car = new Vehicle();
-        car.setManufacture("Audi");
-        car.setModel("R8");
-        car.setYear(2017);
-        car.setCurrentKilometers(0L);
-        car.setSerialNumber("MTV-144");
+        
     }
 
     @Test
