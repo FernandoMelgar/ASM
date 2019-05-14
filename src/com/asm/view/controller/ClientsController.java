@@ -46,7 +46,7 @@ public class ClientsController implements Initializable {
     @FXML private TableColumn<ClientProperty, String> columnName;
     @FXML private TableColumn<ClientProperty, String> columnLastName;
     @FXML private TableColumn<ClientProperty, String> columnEmail;
-    @FXML private TableColumn<ClientProperty, Long> columnPhone;
+    @FXML private TableColumn<ClientProperty, String> columnPhone;
     @FXML private TableColumn<ClientProperty, String> columnCars;
 
     // Client Details labels
@@ -87,7 +87,7 @@ public class ClientsController implements Initializable {
         columnName.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
         columnLastName.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
         columnEmail.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
-        columnPhone.setCellValueFactory(cellData -> cellData.getValue().phoneNumberProperty().asObject());
+        columnPhone.setCellValueFactory(cellData -> cellData.getValue().phoneNumberProperty());
         columnCars.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getCarElementsToString()));
         showUserDetails(null);
         clientsTable.getSelectionModel().selectedItemProperty().addListener(
@@ -173,7 +173,7 @@ public class ClientsController implements Initializable {
             clientDetailSplitPane.setDividerPositions(new double[]{0.5});
             clientNameDetail.setText(client.getFirstName() + " " + client.getLastName());
             clientEmailDetail.setText(client.getEmail());
-            clientPhoneDetail.setText(Long.toString(client.getPhoneNumber()));
+            clientPhoneDetail.setText(client.getPhoneNumber());
         } else {
             showClientDetailsPane(false);
             clientDetailSplitPane.setDividerPositions(new double[]{1});

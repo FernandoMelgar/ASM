@@ -41,7 +41,6 @@ public class ClientNodePersistenceTest {
 
             if (clientCars.size() != 0) {
                 for (final JsonNode carNode : clientCars) {
-                    System.out.println(carNode);
                     carsList.add(carNode.toString());
                 }
             }
@@ -56,7 +55,7 @@ public class ClientNodePersistenceTest {
             client.setCars(carsList);
             System.out.println(client.toString());
         }
-        
+
     }
 
     @Test

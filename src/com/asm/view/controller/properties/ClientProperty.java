@@ -11,7 +11,7 @@ public class ClientProperty {
     private StringProperty firstName;
     private StringProperty lastName;
     private StringProperty email;
-    private LongProperty phoneNumber;
+    private StringProperty phoneNumber;
     private StringProperty address;
     private List<AutomobileProperty> car;
 
@@ -20,7 +20,7 @@ public class ClientProperty {
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.email = new SimpleStringProperty("");
-        this.phoneNumber = new SimpleLongProperty();
+        this.phoneNumber = new SimpleStringProperty();
         this.car = new ArrayList<>();
         AutomobileProperty c = new  AutomobileProperty("Audi", "Q5");
         AutomobileProperty d = new  AutomobileProperty("Audi", "Q3");
@@ -33,41 +33,30 @@ public class ClientProperty {
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.email = new SimpleStringProperty(email);
-        this.phoneNumber = new SimpleLongProperty();
+        this.phoneNumber = new SimpleStringProperty();
         this.car = new ArrayList<>();
         AutomobileProperty c = new  AutomobileProperty("Audi", "Q5");
         AutomobileProperty d = new  AutomobileProperty("Audi", "A4");
         this.car.add(c);
     }
 
-    public ClientProperty(String firstName, String lastName, String email, long phoneNumber) {
+    public ClientProperty(String firstName, String lastName, String email, String phoneNumber) {
         this.ID = new SimpleStringProperty("");
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.email = new SimpleStringProperty(email);
-        this.phoneNumber = new SimpleLongProperty(phoneNumber);
+        this.phoneNumber = new SimpleStringProperty(phoneNumber);
         this.car = new ArrayList<>();
         AutomobileProperty c = new  AutomobileProperty("Audi", "Q5");
         this.car.add(c);
     }
 
-    public ClientProperty(String firstName, String lastName, long phoneNumber) {
-        this.ID = new SimpleStringProperty("");
-        this.firstName = new SimpleStringProperty(firstName);
-        this.lastName = new SimpleStringProperty(lastName);
-        this.email = new SimpleStringProperty("");
-        this.phoneNumber = new SimpleLongProperty(phoneNumber);
-        this.car = new ArrayList<>();
-        AutomobileProperty c = new  AutomobileProperty("Audi", "Q5");
-        this.car.add(c);
-    }
-
-    public ClientProperty(String ID, String firstName, String lastName, String email, long phoneNumber) {
+    public ClientProperty(String ID, String firstName, String lastName, String email, String phoneNumber) {
         this.ID = new SimpleStringProperty(ID);
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
         this.email = new SimpleStringProperty(email);
-        this.phoneNumber = new SimpleLongProperty(phoneNumber);
+        this.phoneNumber = new SimpleStringProperty(phoneNumber);
         this.car = new ArrayList<>();
         AutomobileProperty c = new  AutomobileProperty("Audi", "Q5");
         this.car.add(c);
@@ -128,15 +117,15 @@ public class ClientProperty {
         this.email.set(email);
     }
 
-    public long getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber.get();
     }
 
-    public LongProperty phoneNumberProperty() {
+    public StringProperty phoneNumberProperty() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(long phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber.set(phoneNumber);
     }
 

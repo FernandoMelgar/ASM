@@ -49,7 +49,7 @@ public class ClientInteractor {
                     c.getName(),
                     c.getSurnames(),
                     c.getEmail(),
-                    Long.parseLong(c.getPhone())
+                    c.getPhone()
             ));
         }
 
