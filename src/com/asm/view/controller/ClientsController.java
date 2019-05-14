@@ -33,6 +33,7 @@ import java.util.ResourceBundle;
 public class ClientsController implements Initializable {
 
     private ObservableList<ClientProperty> clientData;
+    private String currentUserID;
     private ClientInteractor interactor;
     private String baseURL = "http://localhost:8080";
     private ScrollPane mainScrollPane;
@@ -171,6 +172,8 @@ public class ClientsController implements Initializable {
                 carDetailsVBox.getChildren().add(generateAutomobileGridPanel(element));
             }
             clientDetailSplitPane.setDividerPositions(new double[]{0.5});
+            currentUserID = client.getID();
+            System.out.println(currentUserID);
             clientNameDetail.setText(client.getFirstName() + " " + client.getLastName());
             clientEmailDetail.setText(client.getEmail());
             clientPhoneDetail.setText(client.getPhoneNumber());
@@ -180,6 +183,7 @@ public class ClientsController implements Initializable {
             clientNameDetail.setText("");
             clientEmailDetail.setText("");
             clientPhoneDetail.setText("");
+            currentUserID = "";
         }
     }
 
@@ -196,6 +200,7 @@ public class ClientsController implements Initializable {
         clientNameDetail.setText("");
         clientEmailDetail.setText("");
         clientPhoneDetail.setText("");
+        currentUserID = "";
     }
 
     public void openClientEditWindow() throws IOException {
@@ -217,4 +222,7 @@ public class ClientsController implements Initializable {
         this.mainScrollPane = mainScrollPane;
     }
 
+    public void deleteClientOnClick(MouseEvent mouseEvent) {
+        System.out.println(currentUserID);
+    }
 }
