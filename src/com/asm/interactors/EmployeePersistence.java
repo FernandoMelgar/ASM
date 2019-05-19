@@ -16,7 +16,7 @@ public interface EmployeePersistence {
     void update(Employee c) throws IOException;
    void delete(String id) throws IOException;
 */
-    void save(Employee e);
+    void save(Employee e) throws IOException;
     List<Employee> readAll() throws IOException;
 }
 

@@ -1,20 +1,17 @@
 package com.asm.view.controller;
 
 
-import com.asm.entities.client.Client;
 import com.asm.interactors.ClientInteractor;
 import com.asm.view.controller.properties.AutomobileProperty;
 import com.asm.view.controller.properties.ClientProperty;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -23,11 +20,7 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
 import java.io.*;
-import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class ClientsController implements Initializable {
@@ -92,8 +85,7 @@ public class ClientsController implements Initializable {
         columnCars.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getCarElementsToString()));
         showUserDetails(null);
         clientsTable.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) ->
-                        showUserDetails(newValue)
+                (observable, oldValue, newValue) -> showUserDetails(newValue)
         );
         setUpTable();
     }
@@ -174,7 +166,7 @@ public class ClientsController implements Initializable {
             clientDetailSplitPane.setDividerPositions(new double[]{0.5});
             currentUserID = client.getID();
             System.out.println(currentUserID);
-            clientNameDetail.setText(client.getFirstName() + " " + client.getLastName());
+            clientNameDetail.setText(client.getFirstName() + "ggg " + client.getLastName());
             clientEmailDetail.setText(client.getEmail());
             clientPhoneDetail.setText(client.getPhoneNumber());
         } else {

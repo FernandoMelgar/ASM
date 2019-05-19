@@ -69,6 +69,7 @@ public class NewEmployeeController {
     }
 
     public void saveEmployee(ActionEvent actionEvent) {
+
         Employee e = new Employee();
         e.setPaysheet(new SalaryInfo(this.salaryEmpl.getText(), SalaryType.NOTSET, SalaryIteration.NOTSET));
         e.setName(this.nameEmployee.getText());
@@ -80,6 +81,19 @@ public class NewEmployeeController {
         e.setNss(this.nssEmpl.getText());
 //        e.setPhone(this.phoneEmpl.getText());
 
-        this.persistence.save(e);
+        try {
+            this.persistence.save(e);
+        } catch (IOException ex) {
+//            ex.printStackTrace();
+            System.out.println("Error here");
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Error while creating Employee");
+            alert.setHeaderText("There was an error while creating an Employee");
+            alert.setContentText("Please check your internet connection");
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                goToHomeView();
+            }
+        }
     }
 }

@@ -15,8 +15,8 @@ public class ClientInteractor {
 
 
     public ClientInteractor() {
-//        this.persistence = new ClientMockPersistence();
-        this.persistence = new ClientNodePersistence();
+        this.persistence = new ClientMockPersistence();
+//        this.persistence = new ClientNodePersistence();
         try {
             List<Client> clients = persistence.readAll();
             System.out.println(clients.get(0));

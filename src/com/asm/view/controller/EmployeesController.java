@@ -2,19 +2,18 @@ package com.asm.view.controller;
 
 
 import com.asm.entities.client.Client;
-import com.asm.interactors.ClientInteractor;
+import com.asm.entities.worker.Genre;
+import com.asm.interactors.EmployeeInteractor;
 import com.asm.view.controller.properties.AutomobileProperty;
 import com.asm.view.controller.properties.ClientProperty;
-import javafx.beans.property.ReadOnlyStringWrapper;
+import com.asm.view.controller.properties.EmployeeProperty;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
@@ -23,18 +22,17 @@ import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
 import java.io.*;
-import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class EmployeesController implements Initializable {
 
-    private ObservableList<ClientProperty> clientData;
+    private ObservableList<EmployeeProperty> clientData;
     private String currentUserID;
-    private ClientInteractor interactor;
+    private EmployeeInteractor interactor;
     private String baseURL = "http://localhost:8080";
     private ScrollPane mainScrollPane;
 
@@ -42,13 +40,21 @@ public class EmployeesController implements Initializable {
     @FXML private AnchorPane mainAnchorPane;
 
     // Clients table items
-    @FXML private TableView<ClientProperty> clientsTable;
-    @FXML private TableColumn<ClientProperty, String> columnID;
-    @FXML private TableColumn<ClientProperty, String> columnName;
-    @FXML private TableColumn<ClientProperty, String> columnLastName;
-    @FXML private TableColumn<ClientProperty, String> columnEmail;
-    @FXML private TableColumn<ClientProperty, String> columnPhone;
-    @FXML private TableColumn<ClientProperty, String> columnCars;
+    @FXML private TableView<EmployeeProperty> clientsTable;
+    @FXML private TableColumn<EmployeeProperty, String> columnID;
+    @FXML private TableColumn<EmployeeProperty, String> columnName;
+    @FXML private TableColumn<EmployeeProperty, String> columnSurnames;
+    @FXML private TableColumn<EmployeeProperty, String> columnEmail;
+    @FXML private TableColumn<EmployeeProperty, String> columnPhone;
+
+    @FXML private TableColumn<EmployeeProperty, String> columnAddress;
+    @FXML private TableColumn<EmployeeProperty, String> columnPosition;
+    @FXML private TableColumn<EmployeeProperty, String> columnSpeciality;
+    @FXML private TableColumn<EmployeeProperty, String> columnRFC;
+    @FXML private TableColumn<EmployeeProperty, String> columnNSS;
+
+
+
 
     // Client Details labels
     @FXML private SplitPane clientDetailSplitPane;
@@ -62,15 +68,15 @@ public class EmployeesController implements Initializable {
 
 
     public EmployeesController() {
-        this.interactor = new ClientInteractor();
+        this.interactor = new MockEmployeeInteractor();
         try {
-            this.clientData = FXCollections.observableArrayList(interactor.getAllClientsAsProperty());
+            this.clientData = FXCollections.observableArrayList(interactor.getAllEmployeesAsProperty());
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public ObservableList<ClientProperty> getClientData() {
+    public ObservableList<EmployeeProperty> getClientData() {
         return clientData;
     }
 
@@ -84,72 +90,18 @@ public class EmployeesController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        columnID.setCellValueFactory(cellData-> cellData.getValue().IDProperty());
-        columnName.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
-        columnLastName.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
-        columnEmail.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
-        columnPhone.setCellValueFactory(cellData -> cellData.getValue().phoneNumberProperty());
-        showUserDetails(null);
-        clientsTable.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) ->
-                        showUserDetails(newValue)
-        );
+        columnID.setCellValueFactory(cellData-> cellData.getValue().idProperty());
+        columnName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
+        columnSurnames.setCellValueFactory(cellData -> cellData.getValue().surnamesProperty());
+        columnPhone.setCellValueFactory(cellData -> cellData.getValue().phoneProperty());
+        columnAddress.setCellValueFactory(cellData-> cellData.getValue().addressProperty());
+        columnPosition.setCellValueFactory(cellData-> cellData.getValue().positionProperty());
+        columnSpeciality.setCellValueFactory(cellData-> cellData.getValue().specialityProperty());
+        columnRFC.setCellValueFactory(cellData-> cellData.getValue().rfcProperty());
+        columnNSS.setCellValueFactory(cellData-> cellData.getValue().nssProperty());
         setUpTable();
     }
 
-    public GridPane generateAutomobileGridPanel(AutomobileProperty auto) {
-        GridPane carGridPane = new GridPane();
-        carGridPane.setGridLinesVisible(false);
-
-        ColumnConstraints column1 = new ColumnConstraints();
-        ColumnConstraints column2 = new ColumnConstraints();
-        ColumnConstraints column3 = new ColumnConstraints();
-        ColumnConstraints column4 = new ColumnConstraints();
-        RowConstraints row1 = new RowConstraints();
-        RowConstraints row2 = new RowConstraints();
-        RowConstraints row3 = new RowConstraints();
-
-        column1.setHgrow(Priority.NEVER);
-        column2.setHgrow(Priority.ALWAYS);
-        column2.setHalignment(HPos.LEFT);
-        column3.setHgrow(Priority.NEVER);
-        column4.setHgrow(Priority.ALWAYS);
-        column4.setHalignment(HPos.LEFT);
-
-        carGridPane.getRowConstraints().addAll(row1, row2, row3);
-        carGridPane.getColumnConstraints().addAll(column1, column2, column3, column4);
-
-        Label labelForBrnadAndModel = new Label(auto.getBrand() + " - " + auto.getModel());
-        labelForBrnadAndModel.setPadding(new Insets(5, 5,5,2));
-        Label labelForLicencePlate = new Label("Placas:");
-        labelForLicencePlate.setPadding(new Insets(5, 5,5,2));
-        Label labelLicencePlate = new Label(auto.getLicencePlate());
-        labelLicencePlate.setPadding(new Insets(0, 0,0,5));
-        Label labelForKilometers = new Label("Km:");
-        labelForKilometers.setPadding(new Insets(5, 5,5,2));
-        Label labelKilometers = new Label(Long.toString(auto.getCurrentKm()));
-        labelKilometers.setPadding(new Insets(0, 0,0,5));
-        Label labelForYears = new Label("Año:");
-        labelForYears.setPadding(new Insets(5, 5,5,2));
-        Label labelYear = new Label(Integer.toString(auto.getYear()));
-        labelYear.setPadding(new Insets(0, 0,0,5));
-        Label labelForSerialNumber = new Label("N. Serie:");
-        labelForSerialNumber.setPadding(new Insets(5, 5,5,2));
-        Label labelSerialNumber = new Label(auto.getSerailNumber());
-        labelSerialNumber.setPadding(new Insets(0, 0,0,5));
-
-        carGridPane.add(labelForBrnadAndModel, 0, 0, 4, 1);
-        carGridPane.add(labelForLicencePlate, 0, 1);
-        carGridPane.add(labelLicencePlate, 1, 1);
-        carGridPane.add(labelForKilometers, 0, 2);
-        carGridPane.add(labelKilometers, 1, 2);
-        carGridPane.add(labelForYears, 2, 1);
-        carGridPane.add(labelYear, 3, 1);
-        carGridPane.add(labelForSerialNumber, 2, 2);
-        carGridPane.add(labelSerialNumber, 3, 2);
-
-        return carGridPane;
-    }
 
 
     public void newClientBtnOnClick(MouseEvent mouseEvent) throws IOException {
@@ -163,19 +115,12 @@ public class EmployeesController implements Initializable {
         clientDetailsPane.setManaged(visible);
     }
 
-    public void showUserDetails(ClientProperty client) {
-        if (client != null) {
+    public void showEmployeeDetails(EmployeeProperty employeeProperty) {
+        if (employeeProperty != null) {
             showClientDetailsPane(true);
-            carDetailsVBox.getChildren().clear();
-            for (AutomobileProperty element : client.getCar()) {
-                carDetailsVBox.getChildren().add(generateAutomobileGridPanel(element));
-            }
             clientDetailSplitPane.setDividerPositions(new double[]{0.5});
-            currentUserID = client.getID();
+            currentUserID = employeeProperty.getId();
             System.out.println(currentUserID);
-            clientNameDetail.setText(client.getFirstName() + " " + client.getLastName());
-            clientEmailDetail.setText(client.getEmail());
-            clientPhoneDetail.setText(client.getPhoneNumber());
         } else {
             showClientDetailsPane(false);
             clientDetailSplitPane.setDividerPositions(new double[]{1});
@@ -223,5 +168,31 @@ public class EmployeesController implements Initializable {
 
     public void deleteClientOnClick(MouseEvent mouseEvent) {
         System.out.println(currentUserID);
+    }
+}
+
+class MockEmployeeInteractor  extends EmployeeInteractor {
+
+
+    @Override
+    public List<EmployeeProperty> getAllEmployeesAsProperty() throws IOException {
+        List<EmployeeProperty> employeeProperties = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            employeeProperties.add(new EmployeeProperty(
+                    "EM",
+                    "TestEmpl",
+                    "Surname",
+                    new Date(),
+                    Genre.NONE,
+                    "rfc",
+                    "mail@gmail.com",
+                    "55738398",
+                    "Los angeles",
+                    "Boss of u",
+                    "Doing stuff",
+                    "nss"
+            ));
+        }
+        return employeeProperties;
     }
 }

@@ -15,41 +15,6 @@ public class ClientProperty {
     private StringProperty address;
     private List<AutomobileProperty> car;
 
-    public ClientProperty(String firstName, String lastName) {
-        this.ID = new SimpleStringProperty("");
-        this.firstName = new SimpleStringProperty(firstName);
-        this.lastName = new SimpleStringProperty(lastName);
-        this.email = new SimpleStringProperty("");
-        this.phoneNumber = new SimpleStringProperty();
-        this.car = new ArrayList<>();
-        AutomobileProperty c = new  AutomobileProperty("Audi", "Q5");
-        AutomobileProperty d = new  AutomobileProperty("Audi", "Q3");
-        this.car.add(c);
-        this.car.add(d);
-    }
-
-    public ClientProperty(String firstName, String lastName, String email) {
-        this.ID = new SimpleStringProperty("");
-        this.firstName = new SimpleStringProperty(firstName);
-        this.lastName = new SimpleStringProperty(lastName);
-        this.email = new SimpleStringProperty(email);
-        this.phoneNumber = new SimpleStringProperty();
-        this.car = new ArrayList<>();
-        AutomobileProperty c = new  AutomobileProperty("Audi", "Q5");
-        AutomobileProperty d = new  AutomobileProperty("Audi", "A4");
-        this.car.add(c);
-    }
-
-    public ClientProperty(String firstName, String lastName, String email, String phoneNumber) {
-        this.ID = new SimpleStringProperty("");
-        this.firstName = new SimpleStringProperty(firstName);
-        this.lastName = new SimpleStringProperty(lastName);
-        this.email = new SimpleStringProperty(email);
-        this.phoneNumber = new SimpleStringProperty(phoneNumber);
-        this.car = new ArrayList<>();
-        AutomobileProperty c = new  AutomobileProperty("Audi", "Q5");
-        this.car.add(c);
-    }
 
     public ClientProperty(String ID, String firstName, String lastName, String email, String phoneNumber) {
         this.ID = new SimpleStringProperty(ID);

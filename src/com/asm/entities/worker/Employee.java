@@ -3,7 +3,6 @@ package com.asm.entities.worker;
 
 import com.asm.entities.worker.salaries.SalaryIteration;
 import com.asm.entities.worker.salaries.SalaryType;
-import com.asm.entities.worker.skills.Skill;
 import com.asm.entities.worker.workhistory.WorkHistory;
 
 import java.util.ArrayList;
@@ -17,11 +16,11 @@ public class Employee {
     private String name;
     private String surnames;
     private Date birthDate;
-    private Genre gnere;
+    private Genre genre;
     private String rfc;
     private String email;
     private String phone;
-    private String adress;
+    private String address;
     private String position;
     private String specialities;
     private List<WorkHistory> workHistory;
@@ -32,11 +31,11 @@ public class Employee {
         this.id = "";
         this.name = "";
         this.surnames = "";
-        this.gnere = Genre.NONE;
+        this.genre = Genre.NONE;
         this.rfc = "";
         this.email = "";
         this.phone = "";
-        this.adress = "";
+        this.address = "";
         this.position = "";
         this.workHistory = new ArrayList<>();
         this.paysheet = new SalaryInfo("0", SalaryType.NOTSET, SalaryIteration.NOTSET);
@@ -74,12 +73,13 @@ public class Employee {
         this.birthDate = birthDate;
     }
 
-    public Genre getGnere() {
-        return gnere;
+
+    public Genre getGenre() {
+        return genre;
     }
 
-    public void setGnere(Genre gnere) {
-        this.gnere = gnere;
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 
     public String getRfc() {
@@ -106,12 +106,12 @@ public class Employee {
         this.phone = phone;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getPosition() {
