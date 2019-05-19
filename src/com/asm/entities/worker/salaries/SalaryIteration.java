@@ -4,6 +4,6 @@ public enum  SalaryIteration {
     DAILY,
     WEEKLY,
     BIWEEKLY,
-    NOTSET,
-    MONTHLY
+    MONTHLY,
+    NOTSET
 }

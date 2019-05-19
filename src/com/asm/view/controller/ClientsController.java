@@ -186,7 +186,6 @@ public class ClientsController implements Initializable {
     }
 
 
-
     public void closeClientDetails(MouseEvent mouseEvent) {
         showClientDetailsPane(false);
         clientDetailSplitPane.setDividerPositions(new double[]{1});
@@ -194,12 +193,6 @@ public class ClientsController implements Initializable {
         clientEmailDetail.setText("");
         clientPhoneDetail.setText("");
         currentUserID = "";
-    }
-
-    public void openClientEditWindow() throws IOException {
-        Node editPane = (Node)FXMLLoader.load(getClass().getResource("/fxml/client_views/edit.fxml"));
-        mainAnchorPane.getChildren().clear();
-        mainAnchorPane.getChildren().add(editPane);
     }
 
     public void newClientWindowVisible() throws IOException {

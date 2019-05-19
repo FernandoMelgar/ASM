@@ -28,8 +28,6 @@ public class NewClientController {
     private ClientPersistence clientPersistence;
 
     @FXML private VBox newClientVBox;
-
-    @FXML private TextField editNameInput;
     @FXML private TextField newNameInput;
     @FXML private TextField newSurnameInput;
     @FXML private TextField newEmailInput;

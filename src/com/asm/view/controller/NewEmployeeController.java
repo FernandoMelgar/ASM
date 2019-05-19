@@ -8,14 +8,17 @@ import com.asm.persistance.node.client.EmployeeNodePersistence;
 import com.asm.interactors.EmployeePersistence;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Optional;
+import java.util.ResourceBundle;
 
-public class NewEmployeeController {
+public class NewEmployeeController implements Initializable {
 
     public ChoiceBox genreEmpl;
     public TextField surnamesEmpl;
@@ -95,5 +98,11 @@ public class NewEmployeeController {
                 goToHomeView();
             }
         }
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        genreEmpl.getItems().addAll("Hombre", "Mujer", "Otro");
+        
     }
 }

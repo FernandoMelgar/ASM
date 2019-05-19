@@ -1,6 +1,7 @@
 package com.asm.persistance.node.client;
 
 import com.asm.entities.Automobile;
+import com.asm.entities.MockData;
 import com.asm.entities.client.Client;
 import com.asm.interactors.ClientPersistence;
 import com.fasterxml.jackson.databind.*;
@@ -47,7 +48,7 @@ public class ClientNodePersistence  implements ClientPersistence {
 
             if (clientCars.size() != 0) {
                 for (final JsonNode carNode : clientCars) {
-                    carsList.add(mapper.readValue(carNode.toString(), Automobile.class));
+                    //carsList.add(mapper.readValue(carNode.toString(), Automobile.class));
                 }
             }
 
@@ -58,8 +59,9 @@ public class ClientNodePersistence  implements ClientPersistence {
             client.setPhone(clientJson.get("phone").textValue());
             client.setEmail(clientJson.get("email").textValue());
             client.setAddress(clientJson.get("address").textValue());
-            client.setCars(carsList);
+            client.setCars(MockData.createMockAutomobileList());
             clientsList.add(client);
+
         }
         return clientsList;
     }
@@ -67,12 +69,12 @@ public class ClientNodePersistence  implements ClientPersistence {
     @Override
     public void update(Client c) throws IOException {
         String json = mapper.writeValueAsString(c);
-        String response = NodePersistence.sendPostRequest(json, "http://localhost:3000/client/update");
+        String response = NodePersistence.sendPostRequest(json, "http://localhost:8080/client/update");
     }
 
     @Override
     public void delete(String id) throws IOException {
-        String response = NodePersistence.setRequest("http;//localhost:3000/client/delete/" + id,"DELETE");
+        String response = NodePersistence.setRequest("http://localhost:8080/clients/" + id,"DELETE");
 
     }
 

@@ -34,7 +34,6 @@ public class EditClientsController {
     @FXML
     private VBox newClientVBox;
 
-    @FXML private TextField editNameInput;
     @FXML private TextField newNameInput;
     @FXML private TextField newSurnameInput;
     @FXML private TextField newEmailInput;
@@ -204,6 +203,14 @@ public class EditClientsController {
             newClientVBox.getChildren().add(generateAutomobileGridPanel(i,automobileProperty));
 
         }
+        System.out.println(newClientVBox.getChildren());
+    }
+
+    public String updfateClient() {
+        String updatedCleint = "";
+
+
+        return updatedCleint;
     }
 
 

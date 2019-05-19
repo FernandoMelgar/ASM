@@ -84,7 +84,7 @@
                <children>
                   <Label text="Celular:" />
                   <Label text="Email:" GridPane.columnIndex="2" />
-                  <TextField GridPane.rowIndex="1" />
+                  <TextField fx:id="phoneEmpl" GridPane.rowIndex="1" />
                   <TextField fx:id="emailEmpl" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                   <Label text="Dirección" GridPane.rowIndex="2">
                      <padding>
@@ -134,7 +134,7 @@
                   <Label text="Intervalo de Pagos:" GridPane.rowIndex="2" />
                   <Label text="Número de Seguro Social:" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                   <TextField fx:id="nssEmpl" GridPane.columnIndex="2" GridPane.rowIndex="3" />
-                  <ChoiceBox GridPane.rowIndex="3" />
+                  <ChoiceBox fx:id="paymentEmployee" GridPane.rowIndex="3" />
                   <Label text="Sueldo:" GridPane.rowIndex="4" />
                   <TextField fx:id="salaryEmpl" GridPane.rowIndex="5" />
                </children>

@@ -19,7 +19,7 @@ public class ClientInteractor {
 
     public ClientInteractor() {
         this.automobileInteractor = new AutomobileInteractor();
-//        this.persistence = new ClientMockPersistence();
+        //this.persistence = new ClientMockPersistence();
         this.persistence = new ClientNodePersistence();
         try {
             List<Client> clients = persistence.readAll();

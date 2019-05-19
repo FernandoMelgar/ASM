@@ -16,7 +16,7 @@ public class EmployeeNodePersistence implements EmployeePersistence {
     public void save(Employee empl) throws IOException {
 
         System.out.println("You are here on employeeNode" + empl.getName());
-        String query_url = "http://localhost:3000/employee/save";
+        String query_url = "http://localhost:8080/employees/new";
         ObjectMapper mapper = new ObjectMapper();
 
             String json = mapper.writeValueAsString(empl);
