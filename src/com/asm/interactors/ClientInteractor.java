@@ -1,8 +1,11 @@
 package com.asm.interactors;
 
 
+import com.asm.entities.Automobile;
+import com.asm.entities.MockData;
 import com.asm.entities.client.Client;
 import com.asm.persistance.node.client.ClientNodePersistence;
+import com.asm.view.controller.properties.AutomobileProperty;
 import com.asm.view.controller.properties.ClientProperty;
 
 import java.io.IOException;
@@ -12,11 +15,12 @@ import java.util.List;
 public class ClientInteractor {
 
     private ClientPersistence persistence;
-
+    private AutomobileInteractor automobileInteractor;
 
     public ClientInteractor() {
-        this.persistence = new ClientMockPersistence();
-//        this.persistence = new ClientNodePersistence();
+        this.automobileInteractor = new AutomobileInteractor();
+//        this.persistence = new ClientMockPersistence();
+        this.persistence = new ClientNodePersistence();
         try {
             List<Client> clients = persistence.readAll();
             System.out.println(clients.get(0));
@@ -43,19 +47,35 @@ public class ClientInteractor {
         }
     }
 
-    public List<ClientProperty> getAllClientsAsProperty() throws IOException {
+    public void updateClient(Client c){
+        try {
+            this.persistence.update(c);
+        }catch (IOException e){
+            e.printStackTrace();
+            System.out.println("Error while updating client");
+        }
+    }
+
+    public List<ClientProperty> readClientsAsProperty()throws IOException{
+        List<Client> clients = persistence.readAll();
+
+        return getAllClientsAsProperty(clients);
+    }
+
+    public List<ClientProperty> getAllClientsAsProperty(List<Client> clients) throws IOException {
         List<ClientProperty> clientProperties = new ArrayList<>();
 
-        List<Client> clients = persistence.readAll();
-        System.out.println(clients.get(0));
-
         for (Client c : clients) {
+            System.out.println("c.getCars(). = " + c.getCars().get(0).getModel());
+            List<AutomobileProperty> automobiles  = automobileInteractor.changeToAutomobileProperty(c.getCars()) ;
             clientProperties.add(new ClientProperty(
                     c.getId(),
                     c.getName(),
                     c.getSurnames(),
                     c.getEmail(),
-                    c.getPhone()
+                    c.getPhone(),
+                    c.getAddress(),
+                    automobiles
             ));
         }
 
@@ -79,6 +99,7 @@ class ClientMockPersistence implements ClientPersistence {
     public List<Client> readAll() throws IOException {
         List<Client> clients = new ArrayList<>();
         clients.add(new Client("Hans", "Muster de la Paz", "hans@gmail.com"));
+        System.out.println(clients.get(0).getCars().get(0).getModel());
         clients.add(new Client("Ruth", "Mueller Rasjdnasjns", "goo@gmail.com"));
         clients.add(new Client("Heinz", "Kurz"));
         clients.add(new Client("Cornelia", "Meier"));

@@ -1,7 +1,8 @@
 package com.asm.entities.client;
 
 
-import com.asm.entities.Vehicle;
+import com.asm.entities.Automobile;
+import com.asm.entities.MockData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ public class Client {
     private String phone;
     private String email;
     private String address;
-    private List<String> cars;
+    private List<Automobile> cars;
 
     public Client() {
 //        this.id = "";
@@ -23,7 +24,7 @@ public class Client {
         this.phone = "";
         this.address = "";
         this.email = "";
-        this.cars = new ArrayList<>();
+        this.cars = MockData.createMockAutomobileList();
     }
 
     public Client(String name, String lastname, String email) {
@@ -32,8 +33,9 @@ public class Client {
         this.email = email;
         this.surnames = "Defaul";
         this.phone = "4565";
-        this.address = "";
-        this.cars = new ArrayList<>();
+        this.address = "Colorado";
+        this.cars = MockData.createMockAutomobileList();
+
     }
 
     public Client(String name, String lastname) {
@@ -42,8 +44,9 @@ public class Client {
         this.email = "defaul@gmail.com";
         this.surnames = "Default";
         this.phone = "1234";
-        this.address = "Defualt defualt fault";
-        this.cars = new ArrayList<>();
+        this.address = "Santa monica";
+        this.cars = MockData.createMockAutomobileList();
+
     }
 
     @Override
@@ -100,11 +103,11 @@ public class Client {
         this.address = address;
     }
 
-    public List<String> getCars() {
+    public List<Automobile> getCars() {
         return cars;
     }
 
-    public void setCars(List<String> cars) {
+    public void setCars(List<Automobile> cars) {
         this.cars = cars;
     }
 

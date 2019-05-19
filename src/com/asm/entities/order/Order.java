@@ -1,6 +1,6 @@
 package com.asm.entities.order;
 
-import com.asm.entities.Vehicle;
+import com.asm.entities.Automobile;
 import com.asm.entities.client.Client;
 import com.asm.entities.worker.Employee;
 
@@ -12,7 +12,7 @@ public class Order {
 
     private long id;
     private Client client;
-    public Vehicle vehicle;
+    public Automobile automobile;
     private Service service;
     private Employee mechanic;
 
@@ -26,10 +26,10 @@ public class Order {
     private Status status;
     private double orderScore;
 
-    public Order(Service service, Client client, Vehicle vehicle) {
+    public Order(Service service, Client client, Automobile automobile) {
         this.service = service;
         this.client = client;
-        this.vehicle = vehicle;
+        this.automobile = automobile;
         this.status = Status.UNFINISHED;
         this.categories = new ArrayList<>();
         this.extraPieces = new ArrayList<>();

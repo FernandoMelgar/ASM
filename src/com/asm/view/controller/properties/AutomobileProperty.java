@@ -3,65 +3,45 @@ package com.asm.view.controller.properties;
 import javafx.beans.property.*;
 
 public class AutomobileProperty {
-    private static int folio = 0;
-    private IntegerProperty ID;
+    private StringProperty ID;
     private StringProperty brand;
     private StringProperty model;
-    private IntegerProperty year;
+    private StringProperty year;
     private StringProperty licencePlate;
-    private StringProperty serailNumber;
-    private LongProperty currentKm;
+    private StringProperty serialNumber;
+    private StringProperty currentKm;
 
-    public AutomobileProperty(String brand, String model) {
-        folio ++;
-        this.ID = new SimpleIntegerProperty(folio);
+
+    public AutomobileProperty(String ID, String brand, String model,
+                              String year, String licencePlate,
+                              String serialNumber, String currentKm) {
+        this.ID = new SimpleStringProperty(ID);
         this.brand = new SimpleStringProperty(brand);
         this.model = new SimpleStringProperty(model);
-        this.licencePlate = new SimpleStringProperty("");
-        this.serailNumber = new SimpleStringProperty("");
-        this.year = new SimpleIntegerProperty();
-        this.currentKm = new SimpleLongProperty();
-    }
-
-    public AutomobileProperty(String brand, String model, String licencePlate) {
-        folio ++;
-        this.ID = new SimpleIntegerProperty(folio);
-        this.brand = new SimpleStringProperty(brand);
-        this.model = new SimpleStringProperty(model);
+        this.year = new SimpleStringProperty(year);
         this.licencePlate = new SimpleStringProperty(licencePlate);
-        this.serailNumber = new SimpleStringProperty("");
-        this.year = new SimpleIntegerProperty();
-        this.currentKm = new SimpleLongProperty();
+        this.serialNumber = new SimpleStringProperty(serialNumber);
+        this.currentKm = new SimpleStringProperty(currentKm);
     }
 
-    public AutomobileProperty(String brand, String model, String licencePlate, String serialNumber) {
-        folio ++;
-        this.ID = new SimpleIntegerProperty(folio);
-        this.brand = new SimpleStringProperty(brand);
-        this.model = new SimpleStringProperty(model);
-        this.licencePlate = new SimpleStringProperty(licencePlate);
-        this.serailNumber = new SimpleStringProperty(serialNumber);
-        this.year = new SimpleIntegerProperty();
-        this.currentKm = new SimpleLongProperty();
-    }
-
-    public AutomobileProperty(String brand, String model, int year, String licencePlate, String serialNumber, long currentKm) {
-        folio ++;
-        this.ID = new SimpleIntegerProperty(folio);
-        this.brand = new SimpleStringProperty(brand);
-        this.model = new SimpleStringProperty(model);
-        this.year = new SimpleIntegerProperty(year);
-        this.licencePlate = new SimpleStringProperty(licencePlate);
-        this.serailNumber = new SimpleStringProperty(serialNumber);
-        this.currentKm = new SimpleLongProperty(currentKm);
-    }
-
-    public int getID() {
+    public String getID() {
         return ID.get();
     }
 
-    public IntegerProperty IDProperty() {
+    public StringProperty IDProperty() {
         return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID.set(ID);
+    }
+
+    public void setYear(String year) {
+        this.year.set(year);
+    }
+
+    public void setCurrentKm(String currentKm) {
+        this.currentKm.set(currentKm);
     }
 
     public String getBrand() {
@@ -88,17 +68,6 @@ public class AutomobileProperty {
         this.model.set(model);
     }
 
-    public int getYear() {
-        return year.get();
-    }
-
-    public IntegerProperty yearProperty() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year.set(year);
-    }
 
     public String getLicencePlate() {
         return licencePlate.get();
@@ -112,27 +81,31 @@ public class AutomobileProperty {
         this.licencePlate.set(licencePlate);
     }
 
-    public String getSerailNumber() {
-        return serailNumber.get();
+    public String getSerialNumber() {
+        return serialNumber.get();
     }
 
-    public StringProperty serailNumberProperty() {
-        return serailNumber;
+    public StringProperty serialNumberProperty() {
+        return serialNumber;
     }
 
-    public void setSerailNumber(String serailNumber) {
-        this.serailNumber.set(serailNumber);
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber.set(serialNumber);
     }
 
-    public long getCurrentKm() {
+    public String getYear() {
+        return year.get();
+    }
+
+    public StringProperty yearProperty() {
+        return year;
+    }
+
+    public String getCurrentKm() {
         return currentKm.get();
     }
 
-    public LongProperty currentKmProperty() {
+    public StringProperty currentKmProperty() {
         return currentKm;
-    }
-
-    public void setCurrentKm(long currentKm) {
-        this.currentKm.set(currentKm);
     }
 }

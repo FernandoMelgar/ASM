@@ -9,29 +9,30 @@ import java.util.List;
 public class ClientProperty {
     private StringProperty ID;
     private StringProperty firstName;
-    private StringProperty lastName;
+    private StringProperty surnames;
     private StringProperty email;
     private StringProperty phoneNumber;
     private StringProperty address;
-    private List<AutomobileProperty> car;
+    private List<AutomobileProperty> cars;
 
 
-    public ClientProperty(String ID, String firstName, String lastName, String email, String phoneNumber) {
+    public ClientProperty(String ID, String firstName, String surnames, String email, String phoneNumber, String address, List<AutomobileProperty> cars) {
         this.ID = new SimpleStringProperty(ID);
         this.firstName = new SimpleStringProperty(firstName);
-        this.lastName = new SimpleStringProperty(lastName);
+        this.surnames = new SimpleStringProperty(surnames);
         this.email = new SimpleStringProperty(email);
         this.phoneNumber = new SimpleStringProperty(phoneNumber);
-        this.car = new ArrayList<>();
-        AutomobileProperty c = new  AutomobileProperty("Audi", "Q5");
-        this.car.add(c);
+        this.address = new SimpleStringProperty(address);
+        this.cars = cars;
     }
 
     public ClientProperty(){
 
-        this.car = new ArrayList<>();
-        AutomobileProperty c = new  AutomobileProperty("Audi", "Q5");
-        this.car.add(c);
+        this.cars = new ArrayList<>();
+        AutomobileProperty c1 = new  AutomobileProperty("ID","Brand","Model","Year","Plate","Serial","Kilometes");
+        AutomobileProperty c2 = new  AutomobileProperty("ID","Brand","Model","Year","Plate","Serial","Kilometes");
+        this.cars.add(c1);
+        this.cars.add(c2);
     }
 
     public String getID() {
@@ -58,16 +59,16 @@ public class ClientProperty {
         return firstName;
     }
 
-    public String getLastName() {
-        return lastName.get();
+    public String getSurnames() {
+        return surnames.get();
     }
 
-    public void setLastName(String lastName) {
-        this.lastName.set(lastName);
+    public void setSurnames(String surnames) {
+        this.surnames.set(surnames);
     }
 
-    public StringProperty lastNameProperty() {
-        return lastName;
+    public StringProperty surnamesProperty() {
+        return surnames;
     }
 
     public String getEmail() {
@@ -96,20 +97,32 @@ public class ClientProperty {
 
     public String getCarElementsToString() {
         String elements = new String();
-        for(int i=0; i < car.size(); i++) {
-            elements += car.get(i).getBrand() + " - " + car.get(i).getModel();
-            if (i != car.size() - 1) {
+        for(int i = 0; i < cars.size(); i++) {
+            elements += cars.get(i).getBrand() + " - " + cars.get(i).getModel();
+            if (i != cars.size() - 1) {
                 elements += "\n";
             }
         }
         return elements;
     }
 
-    public List<AutomobileProperty> getCar() {
-        return car;
+    public List<AutomobileProperty> getCars() {
+        return cars;
     }
 
-    public void setCar(List<AutomobileProperty> car) {
-        this.car = car;
+    public void setCars(List<AutomobileProperty> cars) {
+        this.cars = cars;
+    }
+
+    public String getAddress() {
+        return address.get();
+    }
+
+    public StringProperty addressProperty() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address.set(address);
     }
 }

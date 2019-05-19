@@ -28,7 +28,7 @@ public class EmployeeNodePersistence implements EmployeePersistence {
     public List<Employee> readAll() throws IOException {
         {
             List<Employee> employeeList = new ArrayList<>();
-            String response = NodePersistence.sendGetRequest("http://localhost:8080/clients/");
+            String response = NodePersistence.setRequest("http://localhost:8080/clients/", "GET");
             JsonNode rootNode = new ObjectMapper().readTree(new StringReader(response));
             JsonNode EmployeeNode = rootNode.get("employees");
 
@@ -46,5 +46,10 @@ public class EmployeeNodePersistence implements EmployeePersistence {
             }
             return employeeList;
         }
+    }
+
+    @Override
+    public void delete(String id) throws IOException {
+
     }
 }

@@ -1,6 +1,6 @@
 package com.asm.entities;
 
-public class Vehicle {
+public class Automobile {
 
 
     private String id;
@@ -11,7 +11,7 @@ public class Vehicle {
     private String serialNumber;
     private Long currentKilometers;
 
-    public Vehicle() {
+    public Automobile() {
         this.id = "";
         this.manufacture = "";
         this.model = "";

@@ -1,9 +1,11 @@
 package com.asm.persistance.node.client;
 
+import com.asm.entities.Automobile;
 import com.asm.entities.client.Client;
 import com.asm.interactors.ClientPersistence;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.*;
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,14 +27,14 @@ public class ClientNodePersistence  implements ClientPersistence {
 
     @Override
     public Client read(String id) throws IOException {
-        String response = NodePersistence.sendGetRequest("http://localhost:8080/clients/" + id);
+        String response = NodePersistence.setRequest("http://localhost:8080/clients/" + id,"GET");
         return mapper.readValue(response, Client.class);
     }
 
     @Override
     public List<Client> readAll() throws IOException {
         List<Client> clientsList = new ArrayList<>();
-        String response = NodePersistence.sendGetRequest("http://localhost:8080/clients/");
+        String response = NodePersistence.setRequest("http://localhost:8080/clients/","GET");
         System.out.println("response = " + response);
 
         JsonNode rootNode = new ObjectMapper().readTree(new StringReader(response));
@@ -41,11 +43,11 @@ public class ClientNodePersistence  implements ClientPersistence {
         for (int i = 0; i < clientsNode.size(); i++) {
             JsonNode clientJson = clientsNode.get(i);
             JsonNode clientCars = clientJson.get("cars");
-            List<String> carsList = new ArrayList<>();
+            List<Automobile> carsList = new ArrayList<>();
 
             if (clientCars.size() != 0) {
                 for (final JsonNode carNode : clientCars) {
-                    carsList.add(carNode.toString());
+                    carsList.add(mapper.readValue(carNode.toString(), Automobile.class));
                 }
             }
 
@@ -70,6 +72,8 @@ public class ClientNodePersistence  implements ClientPersistence {
 
     @Override
     public void delete(String id) throws IOException {
-        String response = NodePersistence.sendGetRequest("http;//localhost:3000/client/delete/" + id);
+        String response = NodePersistence.setRequest("http;//localhost:3000/client/delete/" + id,"DELETE");
+
     }
+
 }

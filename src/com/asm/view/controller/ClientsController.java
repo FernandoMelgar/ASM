@@ -6,6 +6,7 @@ import com.asm.view.controller.properties.AutomobileProperty;
 import com.asm.view.controller.properties.ClientProperty;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
@@ -30,7 +31,7 @@ public class ClientsController implements Initializable {
     private ClientInteractor interactor;
     private String baseURL = "http://localhost:8080";
     private ScrollPane mainScrollPane;
-
+    private ClientProperty selectedClient;
     // Anchor pane for forms
     @FXML private AnchorPane mainAnchorPane;
 
@@ -57,7 +58,7 @@ public class ClientsController implements Initializable {
     public ClientsController() {
         this.interactor = new ClientInteractor();
         try {
-            this.clientData = FXCollections.observableArrayList(interactor.getAllClientsAsProperty());
+            this.clientData = FXCollections.observableArrayList(interactor.readClientsAsProperty());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -74,12 +75,16 @@ public class ClientsController implements Initializable {
         clientsTable.setItems(getClientData());
     }
 
+    public static void saveClient() {
+        String query_url = "http://localhost:8080/clients/new";
+
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         columnID.setCellValueFactory(cellData-> cellData.getValue().IDProperty());
         columnName.setCellValueFactory(cellData -> cellData.getValue().firstNameProperty());
-        columnLastName.setCellValueFactory(cellData -> cellData.getValue().lastNameProperty());
+        columnLastName.setCellValueFactory(cellData -> cellData.getValue().surnamesProperty());
         columnEmail.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
         columnPhone.setCellValueFactory(cellData -> cellData.getValue().phoneNumberProperty());
         columnCars.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(cellData.getValue().getCarElementsToString()));
@@ -120,15 +125,15 @@ public class ClientsController implements Initializable {
         labelLicencePlate.setPadding(new Insets(0, 0,0,5));
         Label labelForKilometers = new Label("Km:");
         labelForKilometers.setPadding(new Insets(5, 5,5,2));
-        Label labelKilometers = new Label(Long.toString(auto.getCurrentKm()));
+        Label labelKilometers = new Label(auto.getCurrentKm());
         labelKilometers.setPadding(new Insets(0, 0,0,5));
         Label labelForYears = new Label("Año:");
         labelForYears.setPadding(new Insets(5, 5,5,2));
-        Label labelYear = new Label(Integer.toString(auto.getYear()));
+        Label labelYear = new Label(auto.getYear());
         labelYear.setPadding(new Insets(0, 0,0,5));
         Label labelForSerialNumber = new Label("N. Serie:");
         labelForSerialNumber.setPadding(new Insets(5, 5,5,2));
-        Label labelSerialNumber = new Label(auto.getSerailNumber());
+        Label labelSerialNumber = new Label(auto.getSerialNumber());
         labelSerialNumber.setPadding(new Insets(0, 0,0,5));
 
         carGridPane.add(labelForBrnadAndModel, 0, 0, 4, 1);
@@ -158,15 +163,16 @@ public class ClientsController implements Initializable {
 
     public void showUserDetails(ClientProperty client) {
         if (client != null) {
+            this.selectedClient = client;
             showClientDetailsPane(true);
             carDetailsVBox.getChildren().clear();
-            for (AutomobileProperty element : client.getCar()) {
+            for (AutomobileProperty element : client.getCars()) {
                 carDetailsVBox.getChildren().add(generateAutomobileGridPanel(element));
             }
             clientDetailSplitPane.setDividerPositions(new double[]{0.5});
             currentUserID = client.getID();
             System.out.println(currentUserID);
-            clientNameDetail.setText(client.getFirstName() + "ggg " + client.getLastName());
+            clientNameDetail.setText(client.getFirstName() + " " + client.getSurnames());
             clientEmailDetail.setText(client.getEmail());
             clientPhoneDetail.setText(client.getPhoneNumber());
         } else {
@@ -177,11 +183,6 @@ public class ClientsController implements Initializable {
             clientPhoneDetail.setText("");
             currentUserID = "";
         }
-    }
-
-    public static void saveClient() {
-        String query_url = "http://localhost:8080/clients/new";
-
     }
 
 
@@ -215,6 +216,15 @@ public class ClientsController implements Initializable {
     }
 
     public void deleteClientOnClick(MouseEvent mouseEvent) {
-        System.out.println(currentUserID);
+        interactor.deleteClient(currentUserID);
+    }
+
+    public void goToEditClient(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/client_views/edit.fxml"));
+        Parent root = loader.load();
+        EditClientsController editClientsController= loader.getController();
+        editClientsController.init(mainScrollPane,this.selectedClient);
+        this.mainScrollPane.setContent(root);
+        mainScrollPane.setFitToWidth(true);
     }
 }

@@ -7,10 +7,10 @@ import java.net.URL;
 public class NodePersistence {
 
 
-    public static String sendGetRequest(String query_url) throws IOException {
+    public static String setRequest(String query_url, String requestMethod) throws IOException {
         URL url = new URL(query_url);
         HttpURLConnection conn = (HttpURLConnection)url.openConnection();
-        conn.setRequestMethod("GET");
+        conn.setRequestMethod(requestMethod);
         return getResponseAsString(conn);
     }
 
