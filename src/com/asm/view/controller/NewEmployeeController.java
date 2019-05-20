@@ -1,5 +1,6 @@
 package com.asm.view.controller;
 
+import com.asm.entities.worker.Address;
 import com.asm.entities.worker.Employee;
 import com.asm.entities.worker.Genre;
 import com.asm.entities.worker.SalaryInfo;
@@ -16,6 +17,9 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -74,19 +78,27 @@ public class NewEmployeeController implements Initializable {
     }
 
     public void saveEmployee(ActionEvent actionEvent) {
+        System.out.println(this.birthDateEmpl.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 
+//        getAsSalaryEnum(this.)
         Employee e = new Employee();
-        e.setPaysheet(new SalaryInfo(this.salaryEmpl.getText(), SalaryType.NOTSET, SalaryIteration.Sin_Establecer));
+        e.setPaysheet(new SalaryInfo(Integer.parseInt(this.salaryEmpl.getText()),
+                SalaryType.NOTSET,
+                SalaryIteration.valueOf(this.paymentEmployee.getValue().toString()),
+                5553));
+
         e.setName(this.nameEmployee.getText());
-        e.setBirthDate(this.birthDateEmpl.toString());
+        e.setBirthDate(this.birthDateEmpl.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
         e.setSurnames(this.surnamesEmpl.getText());
         e.setRfc(this.rfcEmpl.getText());
         e.setEmail(this.emailEmpl.getText());
         e.setPosition(this.positionEmpl.getText());
-        e.setSpecialities(this.specialitiesEmpl.getText());
-        e.setNss(this.nssEmpl.getText());
+        List<String> l = new ArrayList<>();
+        l.add(this.specialitiesEmpl.getText());
+        e.setSpecialities(l);
         e.setGenre((Genre) this.genreEmpl.getValue());
         e.setPhone(this.phoneEmpl.getText());
+        e.setAddress(new Address(this.streetEmpl.getText(), this.cityEmpl.getText(), this.stateEmpl.getText(), (this.nssEmpl.getText())));
 
         try {
             this.persistence.save(e);
@@ -103,6 +115,8 @@ public class NewEmployeeController implements Initializable {
             }
         }
     }
+
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

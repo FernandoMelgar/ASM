@@ -7,23 +7,35 @@ import com.asm.entities.worker.salaries.SalaryType;
 public class SalaryInfo {
 
 
-    private String salary;
+    private int salary;
     private SalaryType salaryType;
-    private SalaryIteration salaryIteration;
+    private SalaryIteration payMode;
+    private int socialSecurity;
 
 
-    public SalaryInfo(String salary, SalaryType salaryType, SalaryIteration salaryIteration) {
+
+
+    public SalaryInfo(int salary, SalaryType salaryType, SalaryIteration payMode, int socialSecurity) {
         this.salary = salary;
         this.salaryType = salaryType;
-        this.salaryIteration = salaryIteration;
+        this.payMode = payMode;
+        this.socialSecurity = socialSecurity;
     }
 
-    public String getSalary() {
+    public int getSalary() {
         return salary;
     }
 
-    public void setSalary(String salary) {
+    public void setSalary(int salary) {
         this.salary = salary;
+    }
+
+    public int getSocialSecurity() {
+        return socialSecurity;
+    }
+
+    public void setSocialSecurity(int socialSecurity) {
+        this.socialSecurity = socialSecurity;
     }
 
     public SalaryType getSalaryType() {
@@ -34,11 +46,11 @@ public class SalaryInfo {
         this.salaryType = salaryType;
     }
 
-    public SalaryIteration getSalaryIteration() {
-        return salaryIteration;
+    public SalaryIteration getPayMode() {
+        return payMode;
     }
 
-    public void setSalaryIteration(SalaryIteration salaryIteration) {
-        this.salaryIteration = salaryIteration;
+    public void setPayMode(SalaryIteration payMode) {
+        this.payMode = payMode;
     }
 }

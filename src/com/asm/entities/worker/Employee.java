@@ -4,10 +4,8 @@ package com.asm.entities.worker;
 import com.asm.entities.worker.salaries.SalaryIteration;
 import com.asm.entities.worker.salaries.SalaryType;
 import com.asm.entities.worker.workhistory.WorkHistory;
-import javafx.scene.control.DatePicker;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class Employee {
@@ -16,30 +14,33 @@ public class Employee {
 
     private String name;
     private String surnames;
-    private String birthDate;
     private Genre genre;
+    private String birthDate;
     private String rfc;
     private String email;
     private String phone;
-    private String address;
+    private Address address;
     private String position;
-    private String specialities;
+    private List<String> specialities;
     private List<WorkHistory> workHistory;
     private SalaryInfo paysheet;
-    private String nss;
+    private int qualification;
+    private boolean active;
 
     public Employee() {
         this.id = "";
         this.name = "";
         this.surnames = "";
-        this.genre = Genre.Otro;
+        this.genre = Genre.other;
         this.rfc = "";
         this.email = "";
         this.phone = "";
-        this.address = "";
+        this.address = new Address();
         this.position = "";
         this.workHistory = new ArrayList<>();
-        this.paysheet = new SalaryInfo("0", SalaryType.NOTSET, SalaryIteration.Sin_Establecer);
+        this.paysheet = new SalaryInfo(0, SalaryType.NOTSET, SalaryIteration.Sin_Establecer, 5553);
+        this.qualification = 0;
+        this.active = true;
     }
 
     public String getId() {
@@ -107,12 +108,37 @@ public class Employee {
         this.phone = phone;
     }
 
-    public String getAddress() {
+
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public List<String> getSpecialities() {
+        return specialities;
+    }
+
+    public void setSpecialities(List<String> specialities) {
+        this.specialities = specialities;
+    }
+
+    public int getQualification() {
+        return qualification;
+    }
+
+    public void setQualification(int qualification) {
+        this.qualification = qualification;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     public String getPosition() {
@@ -121,22 +147,6 @@ public class Employee {
 
     public void setPosition(String position) {
         this.position = position;
-    }
-
-    public String getSpecialities() {
-        return specialities;
-    }
-
-    public void setSpecialities(String specialities) {
-        this.specialities = specialities;
-    }
-
-    public String getNss() {
-        return nss;
-    }
-
-    public void setNss(String nss) {
-        this.nss = nss;
     }
 
     public List<WorkHistory> getWorkHistory() {

@@ -19,13 +19,14 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class EditClientsController {
     private ScrollPane mainScrollPane;
     private ClientProperty clientProperty;
-
+    private List<GridPane> automobileGridPane;
 
     private int carCountState = 0;
     private List<AutomobileProperty> carsAdded;
@@ -42,6 +43,7 @@ public class EditClientsController {
 
     public EditClientsController() {
         this.interactor = new ClientInteractor();
+        this.automobileGridPane = new ArrayList<>();
     }
 
     public void updateChangesForClientOnClick(MouseEvent mouseEvent) {
@@ -183,7 +185,6 @@ public class EditClientsController {
         client.setPhone(this.newPhoneInput.getText());
         client.setEmail(this.newEmailInput.getText());
         client.setAddress(this.newAddressInput.getText());
-
         interactor.updateClient(client);
     }
 
@@ -200,8 +201,9 @@ public class EditClientsController {
         List<AutomobileProperty> cars = clientProperty.getCars();
         for (int i = 0; i < cars.size(); i++) {
             AutomobileProperty automobileProperty = cars.get(i);
-            newClientVBox.getChildren().add(generateAutomobileGridPanel(i,automobileProperty));
-
+            GridPane automobilepane = generateAutomobileGridPanel(i,automobileProperty);
+            newClientVBox.getChildren().add(automobilepane);
+            automobileGridPane.add(automobilepane);
         }
         System.out.println(newClientVBox.getChildren());
     }
