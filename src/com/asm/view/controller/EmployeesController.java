@@ -2,6 +2,7 @@ package com.asm.view.controller;
 
 
 import com.asm.entities.worker.Genre;
+import com.asm.interactors.ClientInteractor;
 import com.asm.interactors.EmployeeInteractor;
 import com.asm.view.controller.properties.EmployeeProperty;
 import javafx.collections.ObservableList;
@@ -63,7 +64,9 @@ public class EmployeesController implements Initializable {
     private EmployeeProperty selectedEmployee;
 
 
-
+    public EmployeesController() {
+            this.clientData = FXCollections.observableArrayList(interactor.readAllEmployees());
+    }
 
     public ObservableList<EmployeeProperty> getClientData() {
         return clientData;
