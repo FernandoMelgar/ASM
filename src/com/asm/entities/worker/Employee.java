@@ -4,6 +4,7 @@ package com.asm.entities.worker;
 import com.asm.entities.worker.salaries.SalaryIteration;
 import com.asm.entities.worker.salaries.SalaryType;
 import com.asm.entities.worker.workhistory.WorkHistory;
+import javafx.scene.control.DatePicker;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,7 +16,7 @@ public class Employee {
 
     private String name;
     private String surnames;
-    private Date birthDate;
+    private String birthDate;
     private Genre genre;
     private String rfc;
     private String email;
@@ -31,14 +32,14 @@ public class Employee {
         this.id = "";
         this.name = "";
         this.surnames = "";
-        this.genre = Genre.NONE;
+        this.genre = Genre.Otro;
         this.rfc = "";
         this.email = "";
         this.phone = "";
         this.address = "";
         this.position = "";
         this.workHistory = new ArrayList<>();
-        this.paysheet = new SalaryInfo("0", SalaryType.NOTSET, SalaryIteration.NOTSET);
+        this.paysheet = new SalaryInfo("0", SalaryType.NOTSET, SalaryIteration.Sin_Establecer);
     }
 
     public String getId() {
@@ -65,11 +66,11 @@ public class Employee {
         this.surnames = surnames;
     }
 
-    public Date getBirthDate() {
+    public String getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(Date birthDate) {
+    public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
     }
 

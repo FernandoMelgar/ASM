@@ -20,8 +20,8 @@ public class EmployeeNodePersistence implements EmployeePersistence {
         ObjectMapper mapper = new ObjectMapper();
 
             String json = mapper.writeValueAsString(empl);
+            System.out.println("json = " + json);
             String response = NodePersistence.sendPostRequest(json, query_url);
-//        return response;
     }
 
     @Override
@@ -34,7 +34,6 @@ public class EmployeeNodePersistence implements EmployeePersistence {
 
             for (int i = 0; i < EmployeeNode.size(); i++) {
                 JsonNode employeeJson = EmployeeNode.get(i);
-
 
                 Employee employee = new Employee();
                 employee.setId(employeeJson.get("_id").toString());

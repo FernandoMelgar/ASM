@@ -63,6 +63,6 @@ public class HomeController {
     }
 
     public void btnDashboardOnClick(MouseEvent mouseEvent) {
-        displayViewIfNotAlready("/client_views/edit");
+        displayViewIfNotAlready("dashboard");
     }
 }

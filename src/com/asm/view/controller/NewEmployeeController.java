@@ -1,6 +1,7 @@
 package com.asm.view.controller;
 
 import com.asm.entities.worker.Employee;
+import com.asm.entities.worker.Genre;
 import com.asm.entities.worker.SalaryInfo;
 import com.asm.entities.worker.salaries.SalaryIteration;
 import com.asm.entities.worker.salaries.SalaryType;
@@ -21,6 +22,7 @@ import java.util.ResourceBundle;
 public class NewEmployeeController implements Initializable {
 
     public ChoiceBox genreEmpl;
+    public ChoiceBox paymentEmployee;
     public TextField surnamesEmpl;
     public TextField nameEmployee;
     public TextField rfcEmpl;
@@ -74,15 +76,17 @@ public class NewEmployeeController implements Initializable {
     public void saveEmployee(ActionEvent actionEvent) {
 
         Employee e = new Employee();
-        e.setPaysheet(new SalaryInfo(this.salaryEmpl.getText(), SalaryType.NOTSET, SalaryIteration.NOTSET));
+        e.setPaysheet(new SalaryInfo(this.salaryEmpl.getText(), SalaryType.NOTSET, SalaryIteration.Sin_Establecer));
         e.setName(this.nameEmployee.getText());
+        e.setBirthDate(this.birthDateEmpl.toString());
         e.setSurnames(this.surnamesEmpl.getText());
         e.setRfc(this.rfcEmpl.getText());
         e.setEmail(this.emailEmpl.getText());
         e.setPosition(this.positionEmpl.getText());
         e.setSpecialities(this.specialitiesEmpl.getText());
         e.setNss(this.nssEmpl.getText());
-//        e.setPhone(this.phoneEmpl.getText());
+        e.setGenre((Genre) this.genreEmpl.getValue());
+        e.setPhone(this.phoneEmpl.getText());
 
         try {
             this.persistence.save(e);
@@ -102,7 +106,9 @@ public class NewEmployeeController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        genreEmpl.getItems().addAll("Hombre", "Mujer", "Otro");
-        
+        genreEmpl.getItems().addAll(Genre.values());
+        genreEmpl.getSelectionModel().selectFirst();
+        paymentEmployee.getItems().addAll(SalaryIteration.values());
+        paymentEmployee.getSelectionModel().selectFirst();
     }
 }

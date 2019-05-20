@@ -1,16 +1,11 @@
 package com.asm.view.controller;
 
 
-import com.asm.entities.client.Client;
 import com.asm.entities.worker.Genre;
 import com.asm.interactors.EmployeeInteractor;
-import com.asm.view.controller.properties.AutomobileProperty;
-import com.asm.view.controller.properties.ClientProperty;
 import com.asm.view.controller.properties.EmployeeProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.HPos;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
@@ -183,7 +178,7 @@ class MockEmployeeInteractor  extends EmployeeInteractor {
                     "TestEmpl",
                     "Surname",
                     new Date(),
-                    Genre.NONE,
+                    Genre.Otro,
                     "rfc",
                     "mail@gmail.com",
                     "55738398",
