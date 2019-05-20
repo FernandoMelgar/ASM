@@ -5,6 +5,7 @@ import com.asm.entities.worker.Genre;
 import com.asm.interactors.EmployeeInteractor;
 import com.asm.view.controller.properties.EmployeeProperty;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -56,20 +57,13 @@ public class EmployeesController implements Initializable {
     @FXML private AnchorPane clientDetailsPane;
     @FXML private VBox clientDetailsVBox;
     @FXML private VBox carDetailsVBox;
-    @FXML private Label clientNameDetail;
-    @FXML private Label clientEmailDetail;
-    @FXML private Label clientPhoneDetail;
+    @FXML private Label employeeNameDetail;
+    @FXML private Label employeeEmailDetail;
+    @FXML private Label employeePhoneDetail;
+    private EmployeeProperty selectedEmployee;
 
 
 
-    public EmployeesController() {
-        this.interactor = new MockEmployeeInteractor();
-        try {
-            this.clientData = FXCollections.observableArrayList(interactor.getAllEmployeesAsProperty());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     public ObservableList<EmployeeProperty> getClientData() {
         return clientData;
@@ -93,7 +87,12 @@ public class EmployeesController implements Initializable {
         columnPosition.setCellValueFactory(cellData-> cellData.getValue().positionProperty());
         columnSpeciality.setCellValueFactory(cellData-> cellData.getValue().specialityProperty());
         columnRFC.setCellValueFactory(cellData-> cellData.getValue().rfcProperty());
-        columnNSS.setCellValueFactory(cellData-> cellData.getValue().nssProperty());
+        showEmployeeDetails(null);
+
+//        columnNSS.setCellValueFactory(cellData-> cellData.getValue().nssProperty());
+        clientsTable.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> showEmployeeDetails(newValue)
+        );
         setUpTable();
     }
 
@@ -111,17 +110,21 @@ public class EmployeesController implements Initializable {
     }
 
     public void showEmployeeDetails(EmployeeProperty employeeProperty) {
+        System.out.println("Here on earth");
         if (employeeProperty != null) {
+            this.selectedEmployee = employeeProperty;
             showClientDetailsPane(true);
+            carDetailsVBox.getChildren().clear();
             clientDetailSplitPane.setDividerPositions(new double[]{0.5});
-            currentUserID = employeeProperty.getId();
-            System.out.println(currentUserID);
+            employeeNameDetail.setText(employeeProperty.getName()+ " " + employeeProperty.getSurnames());
+            employeeEmailDetail.setText(employeeProperty.getEmail());
+            employeePhoneDetail.setText(employeeProperty.getPhone());
         } else {
             showClientDetailsPane(false);
             clientDetailSplitPane.setDividerPositions(new double[]{1});
-            clientNameDetail.setText("");
-            clientEmailDetail.setText("");
-            clientPhoneDetail.setText("");
+            employeeNameDetail.setText("");
+            employeeEmailDetail.setText("");
+            employeePhoneDetail.setText("");
             currentUserID = "";
         }
     }
@@ -136,9 +139,9 @@ public class EmployeesController implements Initializable {
     public void closeClientDetails(MouseEvent mouseEvent) {
         showClientDetailsPane(false);
         clientDetailSplitPane.setDividerPositions(new double[]{1});
-        clientNameDetail.setText("");
-        clientEmailDetail.setText("");
-        clientPhoneDetail.setText("");
+        employeeNameDetail.setText("");
+        employeeEmailDetail.setText("");
+        employeePhoneDetail.setText("");
         currentUserID = "";
     }
 
@@ -164,30 +167,14 @@ public class EmployeesController implements Initializable {
     public void deleteClientOnClick(MouseEvent mouseEvent) {
         System.out.println(currentUserID);
     }
-}
 
-class MockEmployeeInteractor  extends EmployeeInteractor {
+    public void goToEditEmployee(ActionEvent actionEvent) throws IOException{
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/employee_views/edit.fxml"));
+        Parent root = loader.load();
+        EditEmployeeController editEmployeeController = loader.getController();
+        editEmployeeController.init(mainScrollPane, this.selectedEmployee);
+        this.mainScrollPane.setContent(root);
+        mainScrollPane.setFitToWidth(true);
 
-
-    @Override
-    public List<EmployeeProperty> getAllEmployeesAsProperty() throws IOException {
-        List<EmployeeProperty> employeeProperties = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            employeeProperties.add(new EmployeeProperty(
-                    "EM",
-                    "TestEmpl",
-                    "Surname",
-                    new Date(),
-                    Genre.Otro,
-                    "rfc",
-                    "mail@gmail.com",
-                    "55738398",
-                    "Los angeles",
-                    "Boss of u",
-                    "Doing stuff",
-                    "nss"
-            ));
-        }
-        return employeeProperties;
     }
 }

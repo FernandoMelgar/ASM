@@ -25,7 +25,7 @@ public class Employee {
     private List<WorkHistory> workHistory;
     private SalaryInfo paysheet;
     private int qualification;
-    private boolean active;
+    private String active;
 
     public Employee() {
         this.id = "";
@@ -40,7 +40,7 @@ public class Employee {
         this.workHistory = new ArrayList<>();
         this.paysheet = new SalaryInfo(0, SalaryType.NOTSET, SalaryIteration.Sin_Establecer, 5553);
         this.qualification = 0;
-        this.active = true;
+        this.active = "true";
     }
 
     public String getId() {
@@ -133,11 +133,11 @@ public class Employee {
         this.qualification = qualification;
     }
 
-    public boolean isActive() {
+    public String getActive() {
         return active;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(String active) {
         this.active = active;
     }
 
@@ -164,4 +164,6 @@ public class Employee {
     public void setPaysheet(SalaryInfo paysheet) {
         this.paysheet = paysheet;
     }
+
+
 }

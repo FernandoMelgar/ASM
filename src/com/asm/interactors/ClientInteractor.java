@@ -1,8 +1,6 @@
 package com.asm.interactors;
 
 
-import com.asm.entities.Automobile;
-import com.asm.entities.MockData;
 import com.asm.entities.client.Client;
 import com.asm.persistance.node.client.ClientNodePersistence;
 import com.asm.view.controller.properties.AutomobileProperty;
@@ -59,10 +57,10 @@ public class ClientInteractor {
     public List<ClientProperty> readClientsAsProperty()throws IOException{
         List<Client> clients = persistence.readAll();
 
-        return getAllClientsAsProperty(clients);
+        return changeAsClientProperty(clients);
     }
 
-    public List<ClientProperty> getAllClientsAsProperty(List<Client> clients) throws IOException {
+    public List<ClientProperty> changeAsClientProperty(List<Client> clients) throws IOException {
         List<ClientProperty> clientProperties = new ArrayList<>();
 
         for (Client c : clients) {

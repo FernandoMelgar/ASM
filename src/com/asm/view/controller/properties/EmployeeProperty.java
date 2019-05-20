@@ -1,6 +1,7 @@
 package com.asm.view.controller.properties;
 
 import com.asm.entities.worker.Genre;
+import com.asm.entities.worker.SalaryInfo;
 import com.asm.entities.worker.workhistory.WorkHistory;
 import com.sun.xml.internal.bind.v2.model.core.ID;
 import javafx.beans.property.SimpleStringProperty;
@@ -15,28 +16,29 @@ public class EmployeeProperty {
     private StringProperty id;
     private StringProperty name;
     private StringProperty surnames;
-    private StringProperty birthDate;
     private StringProperty genre;
+    private StringProperty birthDate;
     private StringProperty rfc;
     private StringProperty email;
     private StringProperty phone;
     private StringProperty address;
     private StringProperty position;
     private StringProperty speciality;
-    private StringProperty nss;
-
+    private SalaryInfo paysheet;
+    private int qualification;
+    private StringProperty active;
 
     public EmployeeProperty(String id, String name,
-                            String surnames, Date birthDate,
+                            String surnames, String birthDate,
                             Genre genre, String rfc,
                             String email, String phone,
                             String address, String position,
-                            String speciality, String nss) {
+                            String speciality, String active) {
 
         this.id = new SimpleStringProperty(id);
         this.name = new SimpleStringProperty(name);
         this.surnames = new SimpleStringProperty(surnames);
-        this.birthDate = new SimpleStringProperty(birthDate.toString());
+        this.birthDate = new SimpleStringProperty(birthDate);
         this.genre = new SimpleStringProperty(genre.toString());
         this.rfc = new SimpleStringProperty(rfc);
         this.email = new SimpleStringProperty(email);
@@ -44,7 +46,7 @@ public class EmployeeProperty {
         this.address = new SimpleStringProperty(address);
         this.position = new SimpleStringProperty(position);
         this.speciality = new SimpleStringProperty(speciality);
-        this.nss = new SimpleStringProperty(nss);
+        this.active = new SimpleStringProperty(active);
 
     }
 
@@ -180,15 +182,31 @@ public class EmployeeProperty {
         this.speciality.set(speciality);
     }
 
-    public String getNss() {
-        return nss.get();
+    public SalaryInfo getPaysheet() {
+        return paysheet;
     }
 
-    public StringProperty nssProperty() {
-        return nss;
+    public void setPaysheet(SalaryInfo paysheet) {
+        this.paysheet = paysheet;
     }
 
-    public void setNss(String nss) {
-        this.nss.set(nss);
+    public int getQualification() {
+        return qualification;
+    }
+
+    public void setQualification(int qualification) {
+        this.qualification = qualification;
+    }
+
+    public String getActive() {
+        return active.get();
+    }
+
+    public StringProperty activeProperty() {
+        return active;
+    }
+
+    public void setActive(String active) {
+        this.active.set(active);
     }
 }
