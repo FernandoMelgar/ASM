@@ -65,6 +65,7 @@ public class EmployeesController implements Initializable {
 
 
     public EmployeesController() {
+        this.interactor = new EmployeeInteractor();
         try {
             this.clientData = FXCollections.observableArrayList(interactor.readAllEmployees());
         } catch (IOException e) {
@@ -90,6 +91,7 @@ public class EmployeesController implements Initializable {
         columnName.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         columnSurnames.setCellValueFactory(cellData -> cellData.getValue().surnamesProperty());
         columnPhone.setCellValueFactory(cellData -> cellData.getValue().phoneProperty());
+        columnEmail.setCellValueFactory(cellData -> cellData.getValue().emailProperty());
         columnAddress.setCellValueFactory(cellData-> cellData.getValue().addressProperty());
         columnPosition.setCellValueFactory(cellData-> cellData.getValue().positionProperty());
         columnSpeciality.setCellValueFactory(cellData-> cellData.getValue().specialityProperty());
@@ -172,6 +174,7 @@ public class EmployeesController implements Initializable {
     }
 
     public void deleteClientOnClick(MouseEvent mouseEvent) {
+        this.interactor.deleteEmployee(selectedEmployee.getId());
         System.out.println(currentUserID);
     }
 

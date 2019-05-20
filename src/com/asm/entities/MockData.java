@@ -1,5 +1,10 @@
 package com.asm.entities;
 
+import com.asm.entities.worker.Address;
+import com.asm.entities.worker.SalaryInfo;
+import com.asm.entities.worker.salaries.SalaryIteration;
+import com.asm.entities.worker.salaries.SalaryType;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,5 +34,13 @@ public class MockData {
         return automobiles;
 
 
+    }
+
+    public static Address createFakeAddress() {
+       return new Address("Estado","Ciudad","Calle","7788");
+    }
+
+    public static SalaryInfo createFakePaysheet() {
+        return new SalaryInfo(5000, SalaryType.COMMISSIONED, SalaryIteration.Diario,12356);
     }
 }

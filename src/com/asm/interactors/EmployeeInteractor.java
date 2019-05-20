@@ -20,19 +20,22 @@ public class EmployeeInteractor {
         this.persistence = new EmployeeNodePersistence();
     }
 
-    public List<EmployeeProperty> readAllEmployees() throws IOException{
+    public List<EmployeeProperty> readAllEmployees() throws IOException {
             List<Employee> employees = this.persistence.readAll();
             return getAsEmployeesPropery(employees);
 
     }
 
 
-    public List<EmployeeProperty> getAsEmployeesPropery(List<Employee> employees) throws IOException {
+    public List<EmployeeProperty> getAsEmployeesPropery(List<Employee> employees) {
+
+        for (Employee empl :
+                employees) {
+            System.out.println(empl.getName());
+        }
         List<EmployeeProperty> employeeProperties = new ArrayList<>();
 
         for (Employee e : employees) {
-
-
             employeeProperties.add(new EmployeeProperty(
                     e.getId(),
                     e.getName(),
@@ -44,15 +47,21 @@ public class EmployeeInteractor {
                     e.getPhone(),
                     e.getAddress().getState() + " "
                             + e.getAddress().getCity() + " "
-                            + e.getAddress().getStreet() +  ",zip: "
-                            + e.getAddress().getZip() ,
+                            + e.getAddress().getStreet() +  " ,zip: "
+                            + e.getAddress().getZip(),
                     e.getPosition(),
                     e.getSpecialities().get(0),
                     e.getActive()
             ));
         }
-
         return employeeProperties;
     }
 
+    public void deleteEmployee(String id) {
+        try {
+            this.persistence.delete(id);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
