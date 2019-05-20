@@ -21,7 +21,7 @@ public class Employee {
     private String phone;
     private Address address;
     private String position;
-    private List<String> specialities;
+    private List<String> specialties;
     private List<WorkHistory> workHistory;
     private SalaryInfo paysheet;
     private int qualification;
@@ -31,7 +31,7 @@ public class Employee {
         this.id = "";
         this.name = "";
         this.surnames = "";
-        this.genre = Genre.other;
+        this.genre = Genre.Otro;
         this.rfc = "";
         this.email = "";
         this.phone = "";
@@ -118,11 +118,11 @@ public class Employee {
     }
 
     public List<String> getSpecialities() {
-        return specialities;
+        return specialties;
     }
 
     public void setSpecialities(List<String> specialities) {
-        this.specialities = specialities;
+        this.specialties = specialities;
     }
 
     public int getQualification() {

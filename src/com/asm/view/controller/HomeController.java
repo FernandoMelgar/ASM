@@ -1,5 +1,6 @@
 package com.asm.view.controller;
 
+import com.asm.view.controller.serviceOrders.ServiceOrdersController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,6 +30,11 @@ public class HomeController {
                 ClientsController clientsController = loader.getController();
                 clientsController.init(mainScrollPane);
             }
+            if (ui.equals("services")){
+                System.out.println("You selected services");
+                ServiceOrdersController serviceOrdersController = loader.getController();
+                serviceOrdersController.init(mainScrollPane);
+            }
             if (ui.equals("employees")) {
                 System.out.println("You selected employess");
                 EmployeesController employeesController = loader.getController();
@@ -40,16 +46,15 @@ public class HomeController {
         } catch (IOException ex) {
             Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        }
-
-    public void onBtnClientsClicked(MouseEvent mouseEvent) {
-        displayViewIfNotAlready("clients");
     }
 
     protected void displayViewIfNotAlready(String fileName) {
         if (!this.currentUI.equals(fileName)) loadUI(fileName);
     }
 
+    public void onBtnClientsClicked(MouseEvent mouseEvent) {
+        displayViewIfNotAlready("clients");
+    }
 
     public void btnEmployeesOnClick(MouseEvent mouseEvent) {
         displayViewIfNotAlready("employees");
@@ -60,6 +65,7 @@ public class HomeController {
     }
 
     public void btnServicesOnClick(MouseEvent mouseEvent) {
+        displayViewIfNotAlready("services");
     }
 
     public void btnDashboardOnClick(MouseEvent mouseEvent) {

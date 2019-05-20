@@ -102,6 +102,7 @@ public class NewEmployeeController implements Initializable {
 
         try {
             this.persistence.save(e);
+            goToHomeView();
         } catch (IOException ex) {
 //            ex.printStackTrace();
             System.out.println("Error here");
@@ -115,8 +116,6 @@ public class NewEmployeeController implements Initializable {
             }
         }
     }
-
-
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

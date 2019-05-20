@@ -178,7 +178,7 @@ class MockEmployeeInteractor  extends EmployeeInteractor {
                     "TestEmpl",
                     "Surname",
                     new Date(),
-                    Genre.other,
+                    Genre.Otro,
                     "rfc",
                     "mail@gmail.com",
                     "55738398",
