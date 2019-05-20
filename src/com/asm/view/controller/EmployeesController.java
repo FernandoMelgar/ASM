@@ -65,7 +65,11 @@ public class EmployeesController implements Initializable {
 
 
     public EmployeesController() {
+        try {
             this.clientData = FXCollections.observableArrayList(interactor.readAllEmployees());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public ObservableList<EmployeeProperty> getClientData() {

@@ -20,14 +20,10 @@ public class EmployeeInteractor {
         this.persistence = new EmployeeNodePersistence();
     }
 
-    public List<EmployeeProperty> readAllEmployees(){
-        try {
+    public List<EmployeeProperty> readAllEmployees() throws IOException{
             List<Employee> employees = this.persistence.readAll();
             return getAsEmployeesPropery(employees);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return new ArrayList<>();
+
     }
 
 
