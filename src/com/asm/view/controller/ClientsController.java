@@ -29,7 +29,6 @@ public class ClientsController implements Initializable {
     private ObservableList<ClientProperty> clientData;
     private String currentUserID;
     private ClientInteractor interactor;
-    private String baseURL = "http://localhost:8080";
     private ScrollPane mainScrollPane;
     private ClientProperty selectedClient;
     // Anchor pane for forms
@@ -77,7 +76,6 @@ public class ClientsController implements Initializable {
 
     public static void saveClient() {
         String query_url = "http://localhost:8080/clients/new";
-
     }
 
     @Override
@@ -153,7 +151,6 @@ public class ClientsController implements Initializable {
     public void newClientBtnOnClick(MouseEvent mouseEvent) throws IOException {
         System.out.println("New Client window!");
         newClientWindowVisible();
-        //showNewClientForm(true);
     }
 
     private void showClientDetailsPane(boolean visible) {

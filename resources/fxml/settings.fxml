@@ -1,16 +1,142 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="740.0" prefWidth="780.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label layoutX="39.0" layoutY="26.0" text="Configuración">
-            <font>
-                <Font size="36.0" />
-            </font>
-        </Label>
+      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+              <Label text="Acerca de ASM">
+                  <font>
+                      <Font size="36.0" />
+                  </font>
+              </Label>
+            <TextFlow lineSpacing="1.5">
+               <children>
+                  <Text fontSmoothingType="LCD" nodeOrientation="LEFT_TO_RIGHT" strokeType="OUTSIDE" strokeWidth="0.0" text="ASM es un sistema fácil de utilizar, que ayuda a administrar talleres de coches. La mayoría de los talleres funcionan de una manera muy similar, entran coches, se reparan o revisan y después son entregados a sus clientes. Sin embargo es poco común que se lleve a cabo un seguimiento o que los administradores del taller tengan un control total de lo que está sucediendo, es aquí donde nuestro sistema beneficia a ambas partes, tanto a clientes como al administrador y empleados del taller. El sistema se divide en 4 secciones principales: el dashboard, clientes, empleados y servicios. Cada sección tiene su propio propósito y objetivo. En la sección de Dashboard se ve la información general del taller. Cuántos clientes registrados hay, empleados activos, y servicios en los que se está trabajando actualmente. Además, el sistema se conecta con una base de datos dónde se guardan los clientes y empleados que trabajan en el taller." />
+               </children>
+            </TextFlow>
+            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Desarrolladores">
+               <VBox.margin>
+                  <Insets top="60.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" spacing="40.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fitHeight="130.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/team/cmr.jpg" />
+                           </image>
+                        </ImageView>
+                        <Label text="Carlos Martínez">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="A01375577" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+                              <Hyperlink text="CarlosMtz98" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fitHeight="130.0" fitWidth="150.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/team/fmm.jpg" />
+                           </image>
+                        </ImageView>
+                        <Label text="Fernando Melgar">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="A01748354" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+                              <Hyperlink text="GalahadFM" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Información Adicional" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Proyecto Final">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Programación Orientada a Objetos">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
+            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Profesor" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Julio Guillermo Arriaga Blumenkron" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" minHeight="100.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <ImageView fitHeight="100.0" fitWidth="200.0" nodeOrientation="INHERIT" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+                           <image>
+                              <Image url="@../images/tec-logo.png" />
+                           </image>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </ImageView>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
     </children>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
 </AnchorPane>
