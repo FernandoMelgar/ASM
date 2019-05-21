@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
@@ -51,6 +52,9 @@
                <VBox.margin>
                   <Insets />
                </VBox.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </Button>
             <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#btnConfigOnClick" prefWidth="240.0" style="-fx-background-color: #302C44;" styleClass="nav-button" stylesheets="@../css/home.css" text="Acerca de ASM" textFill="#f4f6f9">
                <padding>
