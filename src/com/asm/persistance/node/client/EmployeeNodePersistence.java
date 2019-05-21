@@ -36,19 +36,19 @@ public class EmployeeNodePersistence implements EmployeePersistence {
             JsonNode EmployeeNode = rootNode.get("employees");
             for (int i = 0; i < EmployeeNode.size(); i++) {
                 JsonNode employeeJson = EmployeeNode.get(i);
-                System.out.println(employeeJson.toString());
+                System.out.println(employeeJson.textValue());
                 Employee employee = new Employee();
                 employee.setId(employeeJson.get("_id").textValue());
-                employee.setName(employeeJson.get("name").toString());
-                employee.setSurnames(employeeJson.get("surnames").toString());
-                employee.setPhone(employeeJson.get("phone").toString());
+                employee.setName(employeeJson.get("name").textValue());
+                employee.setSurnames(employeeJson.get("surnames").textValue());
+                employee.setPhone(employeeJson.get("phone").textValue());
                 employee.setEmail(employeeJson.get("email").textValue());
                 employee.setGenre(Genre.Hombre);
-                employee.setBirthDate(employeeJson.get("birthDate").toString());
-                employee.setRfc(employeeJson.get("rfc").toString());
+                employee.setBirthDate(employeeJson.get("birthDate").textValue());
+                employee.setRfc(employeeJson.get("rfc").textValue());
                 employee.setAddress(MockData.createFakeAddress());
                 ArrayList<String> specialties = new ArrayList<>();
-                specialties.add(employeeJson.get("specialties").toString());
+                specialties.add(employeeJson.get("specialties").textValue());
                 employee.setSpecialities(specialties);
                 employee.setPaysheet(MockData.createFakePaysheet());
                 employeeList.add(employee);

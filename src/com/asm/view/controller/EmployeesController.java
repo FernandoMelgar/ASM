@@ -1,8 +1,6 @@
 package com.asm.view.controller;
 
 
-import com.asm.entities.worker.Genre;
-import com.asm.interactors.ClientInteractor;
 import com.asm.interactors.EmployeeInteractor;
 import com.asm.view.controller.properties.EmployeeProperty;
 import javafx.collections.ObservableList;
@@ -20,14 +18,11 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.*;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class EmployeesController implements Initializable {
 
-    private ObservableList<EmployeeProperty> clientData;
+    private ObservableList<EmployeeProperty> employeesData;
     private String currentUserID;
     private EmployeeInteractor interactor;
     private String baseURL = "http://localhost:8080";
@@ -50,9 +45,6 @@ public class EmployeesController implements Initializable {
     @FXML private TableColumn<EmployeeProperty, String> columnRFC;
     @FXML private TableColumn<EmployeeProperty, String> columnNSS;
 
-
-
-
     // Client Details labels
     @FXML private SplitPane clientDetailSplitPane;
     @FXML private AnchorPane clientDetailsPane;
@@ -67,22 +59,22 @@ public class EmployeesController implements Initializable {
     public EmployeesController() {
         this.interactor = new EmployeeInteractor();
         try {
-            this.clientData = FXCollections.observableArrayList(interactor.readAllEmployees());
+            this.employeesData = FXCollections.observableArrayList(interactor.readAllEmployees());
         } catch (IOException e) {
             e.printStackTrace();
         }
 
     }
 
-    public ObservableList<EmployeeProperty> getClientData() {
-        return clientData;
+    public ObservableList<EmployeeProperty> getEmployeesData() {
+        return employeesData;
     }
 
     private void setUpTable() {
         columnID.setText("ID");
         columnName.setText("Nombre");
         columnEmail.setText("Email");
-        clientsTable.setItems(getClientData());
+        clientsTable.setItems(getEmployeesData());
     }
 
 
