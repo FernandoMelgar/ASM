@@ -71,6 +71,7 @@ public class EmployeesController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public ObservableList<EmployeeProperty> getClientData() {

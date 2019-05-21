@@ -21,6 +21,12 @@ public class Automobile {
         this.currentKilometers = 0L;
     }
 
+    public Automobile(String manufacture, String model, int year) {
+        this.manufacture = manufacture;
+        this.model = model;
+        this.year = year;
+    }
+
     public String getId() {
         return id;
     }

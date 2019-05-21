@@ -12,7 +12,7 @@ public class Order {
 
     private long id;
     private Client client;
-    public Automobile automobile;
+    private Automobile automobile;
     private Service service;
     private Employee mechanic;
 
@@ -156,5 +156,37 @@ public class Order {
 
     public void subtractHourlyTime(int i) {
         this.hourlyRequiredTime -= i;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public double getOrderScore() {
+        return orderScore;
+    }
+
+    public void setOrderScore(double orderScore) {
+        this.orderScore = orderScore;
+    }
+
+    public Automobile getAutomobile() {
+        return automobile;
+    }
+
+    public void setAutomobile(Automobile automobile) {
+        this.automobile = automobile;
     }
 }

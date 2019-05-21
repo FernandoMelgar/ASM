@@ -1,5 +1,6 @@
 package com.asm.interactors;
 
+import com.asm.entities.MockData;
 import com.asm.entities.client.Client;
 import com.asm.entities.worker.Employee;
 import com.asm.persistance.node.client.EmployeeNodePersistence;
@@ -14,10 +15,12 @@ import java.util.List;
 
 public class EmployeeInteractor {
 
-    private EmployeeNodePersistence  persistence;
+    private EmployeePersistence  persistence;
 
     public EmployeeInteractor() {
-        this.persistence = new EmployeeNodePersistence();
+
+        this.persistence = new EmployeeMockPersistence();
+//        this.persistence = new EmployeeNodePersistence();
     }
 
     public List<EmployeeProperty> readAllEmployees() throws IOException {
@@ -36,6 +39,7 @@ public class EmployeeInteractor {
         List<EmployeeProperty> employeeProperties = new ArrayList<>();
 
         for (Employee e : employees) {
+            System.out.println(e.getName());
             employeeProperties.add(new EmployeeProperty(
                     e.getId(),
                     e.getName(),
@@ -63,5 +67,23 @@ public class EmployeeInteractor {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+}
+
+class EmployeeMockPersistence implements EmployeePersistence {
+
+    @Override
+    public void save(Employee e) throws IOException {
+
+    }
+
+    @Override
+    public List<Employee> readAll() throws IOException {
+        return MockData.createFakeEmployeeList();
+    }
+
+    @Override
+    public void delete(String id) throws IOException {
+
     }
 }
