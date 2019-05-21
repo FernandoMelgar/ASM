@@ -1,15 +1,13 @@
 package com.asm.view.controller.serviceOrders;
 
+import com.asm.entities.order.Status;
 import com.asm.interactors.OrderInteractor;
-import com.asm.view.controller.NewEmployeeController;
 import com.asm.view.controller.properties.OrderProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
@@ -49,10 +47,16 @@ public class ServiceOrdersController  implements Initializable{
     @FXML private AnchorPane clientDetailsPane;
     @FXML private VBox clientDetailsVBox;
     @FXML private VBox carDetailsVBox;
-    @FXML private Label employeeNameDetail;
-    @FXML private Label employeeEmailDetail;
-    @FXML private Label employeePhoneDetail;
-    private OrderProperty selectedEmployee;
+    @FXML private Label serviceTypeDetail;
+    @FXML private Label serviceDescriptionDetail;
+    @FXML private Label serviceClientDetail;
+    @FXML private Label serviceCarDetail;
+    @FXML private Label serviceEmployeeDetail;
+    @FXML private Label serviceStartDateDetail;
+    @FXML private Label serviceFinishDateDetail;
+    @FXML private Label servicePriceDetail;
+
+    private OrderProperty selectedOrder;
 
 
     public ServiceOrdersController() {
@@ -101,19 +105,26 @@ public class ServiceOrdersController  implements Initializable{
     public void showEmployeeDetails(OrderProperty OrderProperty) {
         System.out.println("Here on earth");
         if (OrderProperty != null) {
-            this.selectedEmployee = OrderProperty;
+            this.selectedOrder = OrderProperty;
             showClientDetailsPane(true);
             carDetailsVBox.getChildren().clear();
             clientDetailSplitPane.setDividerPositions(new double[]{0.5});
-            employeeNameDetail.setText( OrderProperty.getClient());
-            employeeEmailDetail.setText(OrderProperty.getAutomobile());
-            employeePhoneDetail.setText(OrderProperty.getMechanic());
+            serviceTypeDetail.setText( OrderProperty.getService());
+            serviceDescriptionDetail.setText(OrderProperty.getDescription());
+            serviceClientDetail.setText(OrderProperty.getClient());
+            serviceEmployeeDetail.setText(OrderProperty.getMechanic());
+            serviceCarDetail.setText(OrderProperty.getAutomobile());
+            serviceStartDateDetail.setText(OrderProperty.getStartDate());
+            servicePriceDetail.setText("$"+OrderProperty.getPrice());
         } else {
             showClientDetailsPane(false);
             clientDetailSplitPane.setDividerPositions(new double[]{1});
-            employeeNameDetail.setText("");
-            employeeEmailDetail.setText("");
-            employeePhoneDetail.setText("");
+            serviceTypeDetail.setText("");
+            serviceDescriptionDetail.setText("");
+            serviceClientDetail.setText("");
+            serviceEmployeeDetail.setText("");
+            serviceCarDetail.setText("");
+            servicePriceDetail.setText("");
             currentUserID = "";
         }
     }
@@ -121,9 +132,9 @@ public class ServiceOrdersController  implements Initializable{
     public void closeClientDetails(MouseEvent mouseEvent) {
         showClientDetailsPane(false);
         clientDetailSplitPane.setDividerPositions(new double[]{1});
-        employeeNameDetail.setText("");
-        employeeEmailDetail.setText("");
-        employeePhoneDetail.setText("");
+        serviceTypeDetail.setText("");
+        serviceDescriptionDetail.setText("");
+        serviceClientDetail.setText("");
         currentUserID = "";
     }
 
@@ -137,6 +148,23 @@ public class ServiceOrdersController  implements Initializable{
         System.out.println("New Order");
     }
 
+    public int initToGetCount() {
+        return getOrdersData().size();
+    }
+
+    public double getTotalIncome() {
+        double total = 0;
+        for (int i = 0; i < ordersData.size(); i++) {
+            OrderProperty order = ordersData.get(i);
+            String orderStatus = order.getStatus();
+            if (orderStatus.equals("FINISHED")) {
+                total += new Double(order.getPrice());
+            }
+        }
+
+        return total;
+    }
+
     public void init(ScrollPane mainScrollPane) {
         this.mainScrollPane = mainScrollPane;
     }
@@ -144,5 +172,14 @@ public class ServiceOrdersController  implements Initializable{
     public void initWithNewOrder(ScrollPane mainScrollPane, OrderProperty createdOrder) {
         this.mainScrollPane = mainScrollPane;
         this.ordersData.add(createdOrder);
+    }
+
+    public void finishOrder(MouseEvent mouseEvent) {
+        if (this.selectedOrder != null) {
+            selectedOrder.setStatus(Status.FINISHED.toString());
+        }
+    }
+
+    public void cancelOrder(MouseEvent mouseEvent) {
     }
 }
