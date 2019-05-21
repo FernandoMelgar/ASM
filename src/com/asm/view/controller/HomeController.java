@@ -84,7 +84,6 @@ public class HomeController implements Initializable {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/dashboard.fxml"));
             Parent root = loader.load();
-            displayViewIfNotAlready("dashboard");
             DashboardController dashboardController = loader.getController();
             dashboardController.init(mainScrollPane);
             mainScrollPane.setContent(root);
