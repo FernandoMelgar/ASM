@@ -3,7 +3,9 @@ package com.asm.entities.order;
 import com.asm.entities.Automobile;
 import com.asm.entities.client.Client;
 import com.asm.entities.worker.Employee;
+import javafx.scene.control.ComboBox;
 
+import java.time.chrono.Chronology;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -25,6 +27,17 @@ public class Order {
     private Date endDate;
     private Status status;
     private double orderScore;
+
+    public Order(Client client, Automobile automobile, Employee mechanic, String description, double price, Date startDate, Date endDate, Status status) {
+        this.client = client;
+        this.automobile = automobile;
+        this.mechanic = mechanic;
+        this.description = description;
+        this.price = price;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.status = status;
+    }
 
     public Order(Service service, Client client, Automobile automobile) {
         this.service = service;
@@ -188,5 +201,25 @@ public class Order {
 
     public void setAutomobile(Automobile automobile) {
         this.automobile = automobile;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", client=" + client.getName() + " " + client.getSurnames() +
+                ", automobile=" + automobile +
+                ", service=" + service +
+                ", mechanic=" + mechanic +
+                ", description='" + description + '\'' +
+                ", categories=" + categories +
+                ", extraPieces=" + extraPieces +
+                ", hourlyRequiredTime=" + hourlyRequiredTime +
+                ", price=" + price +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", status=" + status +
+                ", orderScore=" + orderScore +
+                '}';
     }
 }

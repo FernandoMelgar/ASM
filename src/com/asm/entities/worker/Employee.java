@@ -43,6 +43,12 @@ public class Employee {
         this.active = "true";
     }
 
+    public Employee(String id, String name, String surnames) {
+        this.id = id;
+        this.name = name;
+        this.surnames = surnames;
+    }
+
     public String getId() {
         return id;
     }
@@ -165,5 +171,8 @@ public class Employee {
         this.paysheet = paysheet;
     }
 
-
+    @Override
+    public String toString() {
+        return name + " " + surnames;
+    }
 }

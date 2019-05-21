@@ -26,6 +26,13 @@ public class ClientProperty {
         this.cars = cars;
     }
 
+    public ClientProperty(String ID, String firstName, String surnames, List<AutomobileProperty> cars) {
+        this.ID = new SimpleStringProperty(ID);
+        this.firstName = new SimpleStringProperty(firstName);
+        this.surnames = new SimpleStringProperty(surnames);
+        this.cars = cars;
+    }
+
     public ClientProperty(){
 
         this.cars = new ArrayList<>();
@@ -124,5 +131,10 @@ public class ClientProperty {
 
     public void setAddress(String address) {
         this.address.set(address);
+    }
+
+    @Override
+    public String toString() {
+        return firstName.getValue() + " " + surnames.getValue();
     }
 }

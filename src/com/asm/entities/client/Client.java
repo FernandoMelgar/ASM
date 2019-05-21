@@ -27,15 +27,10 @@ public class Client {
         this.cars = MockData.createMockAutomobileList();
     }
 
-    public Client(String name, String lastname, String email) {
-//        this.id = "";
+    public Client(String id, String name, String surnames) {
+        this.id = id;
         this.name = name;
-        this.email = email;
-        this.surnames = "Defaul";
-        this.phone = "4565";
-        this.address = "Colorado";
-        this.cars = MockData.createMockAutomobileList();
-
+        this.surnames = surnames;
     }
 
     public Client(String name, String lastname) {
@@ -51,15 +46,7 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", surnames='" + surnames + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
-                ", cars=" + cars +
-                '}';
+        return name +" " + surnames;
     }
 
     public String getId() {

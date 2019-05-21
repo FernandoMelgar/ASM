@@ -19,8 +19,8 @@ public class EmployeeInteractor {
 
     public EmployeeInteractor() {
 
-        this.persistence = new EmployeeMockPersistence();
-//        this.persistence = new EmployeeNodePersistence();
+        //this.persistence = new EmployeeMockPersistence();
+        this.persistence = new EmployeeNodePersistence();
     }
 
     public List<EmployeeProperty> readAllEmployees() throws IOException {

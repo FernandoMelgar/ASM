@@ -27,6 +27,12 @@ public class Automobile {
         this.year = year;
     }
 
+    public Automobile(String id, String manufacture, String model) {
+        this.id = id;
+        this.manufacture = manufacture;
+        this.model = model;
+    }
+
     public String getId() {
         return id;
     }
@@ -82,5 +88,10 @@ public class Automobile {
 
     public void setCurrentKilometers(Long currentKilometers) {
         this.currentKilometers = currentKilometers;
+    }
+
+    @Override
+    public String toString() {
+        return manufacture + " - " + model;
     }
 }
