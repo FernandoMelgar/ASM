@@ -20,7 +20,7 @@
                   <Insets left="30.0" top="20.0" />
                </VBox.margin>
             </ImageView>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#btnDashboardOnClick" prefWidth="240.0" style="-fx-background-color: #302C44;" styleClass="btn" stylesheets="@../css/home.css" text="Dashboard" textFill="#f4f6f9">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#btnDashboardOnClick" prefWidth="240.0" style="-fx-background-color: #302C44;" styleClass="nav-button" stylesheets="@../css/home.css" text="Dashboard" textFill="#f4f6f9">
                <padding>
                   <Insets bottom="12.0" left="40.0" top="12.0" />
                </padding>
@@ -28,7 +28,7 @@
                   <Insets top="60.0" />
                </VBox.margin>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#btnServicesOnClick" prefWidth="240.0" style="-fx-background-color: #302C44;" stylesheets="@../css/home.css" text="Servicios" textFill="#f4f6f9">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#btnServicesOnClick" prefWidth="240.0" style="-fx-background-color: #302C44;" styleClass="nav-button" stylesheets="@../css/home.css" text="Servicios" textFill="#f4f6f9">
                <padding>
                   <Insets bottom="12.0" left="40.0" top="12.0" />
                </padding>
@@ -36,7 +36,7 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button fx:id="clientsButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#onBtnClientsClicked" prefWidth="240.0" style="-fx-background-color: #302C44;" stylesheets="@../css/home.css" text="Clientes" textFill="#f4f6f9">
+            <Button fx:id="clientsButton" alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#onBtnClientsClicked" prefWidth="240.0" style="-fx-background-color: #302C44;" styleClass="nav-button" stylesheets="@../css/home.css" text="Clientes" textFill="#f4f6f9">
                <padding>
                   <Insets bottom="12.0" left="40.0" top="12.0" />
                </padding>
@@ -44,7 +44,7 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#btnEmployeesOnClick" prefWidth="240.0" style="-fx-background-color: #302C44;" stylesheets="@../css/home.css" text="Empleados" textFill="#f4f6f9">
+            <Button alignment="BASELINE_LEFT" mnemonicParsing="false" onMouseClicked="#btnEmployeesOnClick" prefWidth="240.0" style="-fx-background-color: #302C44;" styleClass="nav-button" stylesheets="@../css/home.css" text="Empleados" textFill="#f4f6f9">
                <padding>
                   <Insets bottom="12.0" left="40.0" top="12.0" />
                </padding>
@@ -52,7 +52,7 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#btnConfigOnClick" prefWidth="240.0" style="-fx-background-color: #302C44;" stylesheets="@../css/home.css" text="Configuración" textFill="#f4f6f9">
+            <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="333.0" mnemonicParsing="false" onMouseClicked="#btnConfigOnClick" prefWidth="240.0" style="-fx-background-color: #302C44;" styleClass="nav-button" stylesheets="@../css/home.css" text="Acerca de ASM" textFill="#f4f6f9">
                <padding>
                   <Insets bottom="12.0" left="40.0" top="12.0" />
                </padding>

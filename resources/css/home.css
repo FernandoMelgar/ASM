@@ -1,0 +1,7 @@
+.nav-button:hover {
+    -fx-background-color: #4F4970 !important;
+}
+
+.nav-button .active {
+    -fx-background-color: #4F4970 !important;
+}
